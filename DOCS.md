@@ -1,0 +1,734 @@
+# conectikids v0.0.0
+
+
+
+- [Activities](#activities)
+	- [Create activities](#create-activities)
+	- [Delete activities](#delete-activities)
+	- [Retrieve activities](#retrieve-activities)
+	- [Update activities](#update-activities)
+	
+- [Auth](#auth)
+	- [Authenticate](#authenticate)
+	
+- [Chats](#chats)
+	- [Create chats](#create-chats)
+	- [Delete chats](#delete-chats)
+	- [Retrieve chats](#retrieve-chats)
+	- [Update chats](#update-chats)
+	
+- [Chatsusers](#chatsusers)
+	- [Create chatsusers](#create-chatsusers)
+	- [Delete chatsusers](#delete-chatsusers)
+	- [Retrieve chatsusers](#retrieve-chatsusers)
+	- [Update chatsusers](#update-chatsusers)
+	
+- [Childrens](#childrens)
+	- [Create childrens](#create-childrens)
+	- [Delete childrens](#delete-childrens)
+	- [Retrieve childrens](#retrieve-childrens)
+	- [Update childrens](#update-childrens)
+	
+- [Courses](#courses)
+	- [Create courses](#create-courses)
+	- [Delete courses](#delete-courses)
+	- [Retrieve courses](#retrieve-courses)
+	- [Update courses](#update-courses)
+	
+- [Gardens](#gardens)
+	- [Create gardens](#create-gardens)
+	- [Delete gardens](#delete-gardens)
+	- [Retrieve gardens](#retrieve-gardens)
+	- [Update gardens](#update-gardens)
+	
+- [Messages](#messages)
+	- [Create messages](#create-messages)
+	- [Delete messages](#delete-messages)
+	- [Retrieve messages](#retrieve-messages)
+	- [Update messages](#update-messages)
+	
+- [PasswordReset](#passwordreset)
+	- [Send email](#send-email)
+	- [Submit password](#submit-password)
+	- [Verify token](#verify-token)
+	
+- [Tasks](#tasks)
+	- [Create tasks](#create-tasks)
+	- [Delete tasks](#delete-tasks)
+	- [Retrieve tasks](#retrieve-tasks)
+	- [Update tasks](#update-tasks)
+	
+- [User](#user)
+	- [Create user](#create-user)
+	- [Delete user](#delete-user)
+	- [Retrieve current user](#retrieve-current-user)
+	- [Retrieve user](#retrieve-user)
+	- [Retrieve users](#retrieve-users)
+	- [Update password](#update-password)
+	- [Update user](#update-user)
+	
+
+
+# Activities
+
+## Create activities
+
+
+
+	POST /activities
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>master access token.</p>							|
+| createdAt			| 			|  <p>Activities's createdAt.</p>							|
+| description			| 			|  <p>Activities's description.</p>							|
+| createdBy_id			| 			|  <p>Activities's createdBy_id.</p>							|
+| course_id			| 			|  <p>Activities's course_id.</p>							|
+
+## Delete activities
+
+
+
+	DELETE /activities/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+
+## Retrieve activities
+
+
+
+	GET /activities/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+
+## Update activities
+
+
+
+	PUT /activities/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+| createdAt			| 			|  <p>Activities's createdAt.</p>							|
+| description			| 			|  <p>Activities's description.</p>							|
+| createdBy_id			| 			|  <p>Activities's createdBy_id.</p>							|
+| course_id			| 			|  <p>Activities's course_id.</p>							|
+
+# Auth
+
+## Authenticate
+
+
+
+	POST /auth
+
+### Headers
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| Authorization			| String			|  <p>Basic authorization with email and password.</p>							|
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>Master access_token.</p>							|
+
+# Chats
+
+## Create chats
+
+
+
+	POST /chats
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>master access token.</p>							|
+| course_id			| 			|  <p>Chats's course_id.</p>							|
+| name			| 			|  <p>Chats's name.</p>							|
+
+## Delete chats
+
+
+
+	DELETE /chats/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+
+## Retrieve chats
+
+
+
+	GET /chats
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+| q			| String			| **optional** <p>Query to search.</p>							|
+| page			| Number			| **optional** <p>Page number.</p>							|
+| limit			| Number			| **optional** <p>Amount of returned items.</p>							|
+| sort			| String[]			| **optional** <p>Order of returned items.</p>							|
+| fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
+
+## Update chats
+
+
+
+	PUT /chats/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+| course_id			| 			|  <p>Chats's course_id.</p>							|
+| name			| 			|  <p>Chats's name.</p>							|
+
+# Chatsusers
+
+## Create chatsusers
+
+
+
+	POST /chatsusers
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>master access token.</p>							|
+| chat_id			| 			|  <p>Chatsusers's chat_id.</p>							|
+| user_id			| 			|  <p>Chatsusers's user_id.</p>							|
+
+## Delete chatsusers
+
+
+
+	DELETE /chatsusers/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+
+## Retrieve chatsusers
+
+
+
+	GET /chatsusers
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+| q			| String			| **optional** <p>Query to search.</p>							|
+| page			| Number			| **optional** <p>Page number.</p>							|
+| limit			| Number			| **optional** <p>Amount of returned items.</p>							|
+| sort			| String[]			| **optional** <p>Order of returned items.</p>							|
+| fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
+
+## Update chatsusers
+
+
+
+	PUT /chatsusers/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+| chat_id			| 			|  <p>Chatsusers's chat_id.</p>							|
+| user_id			| 			|  <p>Chatsusers's user_id.</p>							|
+
+# Childrens
+
+## Create childrens
+
+
+
+	POST /childrens
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>master access token.</p>							|
+| rut			| 			|  <p>Childrens's rut.</p>							|
+| name			| 			|  <p>Childrens's name.</p>							|
+| parent_id			| 			|  <p>Childrens's parent_id.</p>							|
+| course_id			| 			|  <p>Childrens's course_id.</p>							|
+
+## Delete childrens
+
+
+
+	DELETE /childrens/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+
+## Retrieve childrens
+
+
+
+	GET /childrens
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+| q			| String			| **optional** <p>Query to search.</p>							|
+| page			| Number			| **optional** <p>Page number.</p>							|
+| limit			| Number			| **optional** <p>Amount of returned items.</p>							|
+| sort			| String[]			| **optional** <p>Order of returned items.</p>							|
+| fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
+
+## Update childrens
+
+
+
+	PUT /childrens/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+| rut			| 			|  <p>Childrens's rut.</p>							|
+| name			| 			|  <p>Childrens's name.</p>							|
+| parent_id			| 			|  <p>Childrens's parent_id.</p>							|
+| course_id			| 			|  <p>Childrens's course_id.</p>							|
+
+# Courses
+
+## Create courses
+
+
+
+	POST /courses
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>master access token.</p>							|
+| name			| 			|  <p>Courses's name.</p>							|
+| garden_id			| 			|  <p>Courses's garden_id.</p>							|
+| teacher_id			| 			|  <p>Courses's teacher_id.</p>							|
+
+## Delete courses
+
+
+
+	DELETE /courses/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+
+## Retrieve courses
+
+
+
+	GET /courses/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+
+## Update courses
+
+
+
+	PUT /courses/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+| name			| 			|  <p>Courses's name.</p>							|
+| garden_id			| 			|  <p>Courses's garden_id.</p>							|
+| teacher_id			| 			|  <p>Courses's teacher_id.</p>							|
+
+# Gardens
+
+## Create gardens
+
+
+
+	POST /gardens
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>master access token.</p>							|
+| name			| 			|  <p>Gardens's name.</p>							|
+| direction			| 			|  <p>Gardens's direction.</p>							|
+
+## Delete gardens
+
+
+
+	DELETE /gardens/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+
+## Retrieve gardens
+
+
+
+	GET /gardens
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+| q			| String			| **optional** <p>Query to search.</p>							|
+| page			| Number			| **optional** <p>Page number.</p>							|
+| limit			| Number			| **optional** <p>Amount of returned items.</p>							|
+| sort			| String[]			| **optional** <p>Order of returned items.</p>							|
+| fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
+
+## Update gardens
+
+
+
+	PUT /gardens/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+| name			| 			|  <p>Gardens's name.</p>							|
+| direction			| 			|  <p>Gardens's direction.</p>							|
+
+# Messages
+
+## Create messages
+
+
+
+	POST /messages
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>master access token.</p>							|
+| content			| 			|  <p>Messages's content.</p>							|
+| sender_id			| 			|  <p>Messages's sender_id.</p>							|
+| chat_id			| 			|  <p>Messages's chat_id.</p>							|
+
+## Delete messages
+
+
+
+	DELETE /messages/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+
+## Retrieve messages
+
+
+
+	GET /messages/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+
+## Update messages
+
+
+
+	PUT /messages/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+| content			| 			|  <p>Messages's content.</p>							|
+| sender_id			| 			|  <p>Messages's sender_id.</p>							|
+| chat_id			| 			|  <p>Messages's chat_id.</p>							|
+
+# PasswordReset
+
+## Send email
+
+
+
+	POST /password-resets
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| email			| String			|  <p>Email address to receive the password reset token.</p>							|
+| link			| String			|  <p>Link to redirect user.</p>							|
+
+## Submit password
+
+
+
+	PUT /password-resets/:token
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| password			| String			|  <p>User's new password.</p>							|
+
+## Verify token
+
+
+
+	GET /password-resets/:token
+
+
+# Tasks
+
+## Create tasks
+
+
+
+	POST /tasks
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>master access token.</p>							|
+| name			| 			|  <p>Tasks's name.</p>							|
+| description			| 			|  <p>Tasks's description.</p>							|
+| selectedDate			| 			|  <p>Tasks's selectedDate.</p>							|
+| timeof			| 			|  <p>Tasks's timeof.</p>							|
+| course_id			| 			|  <p>Tasks's course_id.</p>							|
+
+## Delete tasks
+
+
+
+	DELETE /tasks/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+
+## Retrieve tasks
+
+
+
+	GET /tasks/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+
+## Update tasks
+
+
+
+	PUT /tasks/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+| name			| 			|  <p>Tasks's name.</p>							|
+| description			| 			|  <p>Tasks's description.</p>							|
+| selectedDate			| 			|  <p>Tasks's selectedDate.</p>							|
+| timeof			| 			|  <p>Tasks's timeof.</p>							|
+| course_id			| 			|  <p>Tasks's course_id.</p>							|
+
+# User
+
+## Create user
+
+
+
+	POST /users
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>Master access_token.</p>							|
+| email			| String			|  <p>User's email.</p>							|
+| password			| String			|  <p>User's password.</p>							|
+| name			| String			| **optional** <p>User's name.</p>							|
+| picture			| String			| **optional** <p>User's picture.</p>							|
+| role			| String			| **optional** <p>User's role.</p>							|
+
+## Delete user
+
+
+
+	DELETE /users/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>User access_token.</p>							|
+
+## Retrieve current user
+
+
+
+	GET /users/me
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>User access_token.</p>							|
+
+## Retrieve user
+
+
+
+	GET /users/:id
+
+
+## Retrieve users
+
+
+
+	GET /users
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>User access_token.</p>							|
+| q			| String			| **optional** <p>Query to search.</p>							|
+| page			| Number			| **optional** <p>Page number.</p>							|
+| limit			| Number			| **optional** <p>Amount of returned items.</p>							|
+| sort			| String[]			| **optional** <p>Order of returned items.</p>							|
+| fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
+
+## Update password
+
+
+
+	PUT /users/:id/password
+
+### Headers
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| Authorization			| String			|  <p>Basic authorization with email and password.</p>							|
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| password			| String			|  <p>User's new password.</p>							|
+
+## Update user
+
+
+
+	PUT /users/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>User access_token.</p>							|
+| name			| String			| **optional** <p>User's name.</p>							|
+| picture			| String			| **optional** <p>User's picture.</p>							|
+
+
