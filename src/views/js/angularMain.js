@@ -12,101 +12,94 @@ app.controller('mailingController', [ '$scope', '$resource', '$location', contac
 function contactForm( $scope, $resource, $location )
 {
 	//Variables iniciales
-	$scope.newPass = ''
-	$scope.sendingInfo = false
-	$scope.writeContact = true
-	$scope.user = { name: '' }
 
-
-	//Obtenemos el token de recuperacion de contraseña desde la URL
-	var forgotToken = $location.$$absUrl.split('/')
-	forgotToken = forgotToken[ (forgotToken.length - 1) ]
+	$scope.state = { 
+		password: '', 
+		user: { name: 'hola' }, 
+		writeContact: true, 
+		sendingInfo: false,
+		errorShowed: false, 
+		infoSended: false,
+		forgotToken: $location.$$absUrl.split('/')[( $location.$$absUrl.split('/').length - 1 )] }
 
 
 
 	//Obtenemos la informacion del usuario
-	var fetch = $resource('http://localhost:9000/api/password-resets/'+forgotToken, {}, {
+	$resource('https://conectikidsback.herokuapp.com/api/password-resets/'+$scope.state.forgotToken, {}, {
 		get: 
 		{
 			method: 'GET'
-		}})
-
-	fetch.get().$promise.then( function(result)
-	{
-		$scope.user = result.user
-		console.log(result.user)
-	} )
-
-
+		}}).get().$promise.then( function(result)
+		{
+			$scope.state.user = result.user
+		}, function(error) 
+		{
+			$scope.state.errorShowed = true
+			$scope.state.writeContact = false
+			$scope.state.sendingInfo = false
+			$scope.state.infoSended = false
+		})
 
 
 
 
 	$scope.enviarInfo = function()
 	{
-		console.log($scope.newPass)
 
-		if( $scope.newPass != '' )
+		console.log( $scope.state.password )
+
+		if( $scope.state.password != '' )
 		{
-			$scope.sendingInfo = true
-			$scope.writeContact = false
+			$scope.state.sendingInfo = true
+			$scope.state.writeContact = false
+			$scope.state.sendingInfo = false
+			$scope.state.infoSended = false
 			console.log("AQUI DEBE IR EL FETCH")
+			$scope.updatePass()
 		}
 		else
 		{
+
 			alert("Ingrese su nueva contraseña")
 		}
 		
 	}
 
-
-	$scope.fetching = function( contact )
+	$scope.updatePass = function( )
 	{
-
 		var contentType = 'application/json'
 
-		var fetch = $resource('https://conectikidmailing.herokuapp.com/api/contact', {},{
-		post: 
-		{
-			method: 'POST',
-			headers: 
+		var fetch = $resource('http://localhost:9000/api/password-resets/'+$scope.state.forgotToken, {}, {
+			put:
 			{
-				'Content-Type' : contentType
+				method: 'PUT',
+				headers:
+				{
+					'Content-Type' : contentType
+				}
 			}
-		}})
+		})
 
-		var peticion = fetch.post( contact )
-		
-		peticion.$promise.then(function (result)
+
+		var peticion = fetch.put( { password: $scope.state.password} )
+
+		peticion.$promise.then( function ( result )
 		{
-			console.log(result)
-		}, function(error) 
+			console.log( result )			
+			$scope.state.errorShowed = false
+			$scope.state.writeContact = false
+			$scope.state.sendingInfo = false
+			$scope.state.infoSended = true
+
+		}, function ( error )
 		{
-			$scope.sendingInfo = false
-			$scope.infoSended = true
+			console.log(error)
+			$scope.state.errorShowed = true
+			$scope.state.writeContact = false
+			$scope.state.sendingInfo = false
+			$scope.state.infoSended = false
 
-
-
-		}).finally(function() 
-		{
-
-			var delayInMilliseconds = 1000
-
-
-			console.log(delayInMilliseconds)
-			
-			setTimeout(function() {
-				$scope.writeContact = true
-
-				$scope.sendingInfo = false
-
-				$scope.infoSended = false
-
-				$scope.contactInfo = { nombreContacto: '', emailContacto: '', phoneContacto: undefined, msjContacto: '' }
-			}, delayInMilliseconds)
-
-
-        })
+		})
 	}
 
 }

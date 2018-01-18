@@ -10,7 +10,7 @@ export const create = ({ bodymen: { body: { email, link } } }, res, next) =>
     .then((reset) => {
       if (!reset) return null
       const { user, token } = reset
-      link = 'http://localhost:9000/api/forgot/'+token
+      link = 'https://conectikidsback.herokuapp.com/api/forgot/'+token
       const content = `
         Estimado ${user.name}.<br><br>
         Has realizado una solicitud para cambiar la contraseña de tu cuenta en Conectikids.<br>

@@ -93,12 +93,12 @@
 									<div style="margin-top: 100px" ng-controller="mailingController" class="apps-craft-contact-form-content wow fadeIn" data-wow-delay="800ms">
 
 
-										<div ng-if="writeContact" class="apps-craft-contact-form-content-inner">
-											<h2>Hola {{ user.name }}, parece que has olvidado tu contraseña, <span>Ingresa una nueva porfavor</span></h2>
+										<div ng-if="state.writeContact" class="apps-craft-contact-form-content-inner">
+											<h2>Hola {{ state.user.name }}, parece que has olvidado tu contraseña, <span>Ingresa una nueva porfavor</span></h2>
 											<div class="apps-craft-contact-form">
 
 
-													<input type="password" ng-model="newPass" class="contactInputs"  placeholder="Nueva contraseña">
+													<input type="password" ng-model="state.password" class="contactInputs"  placeholder="Nueva contraseña">
 
 
 
@@ -113,8 +113,8 @@
 										</div> 
 
 
-										<div ng-if="sendingInfo" class="apps-craft-contact-form-content-inner">
-											<h2><span>Cambiar Contraseña</span></h2>
+										<div style="text-align: center !important" ng-if="state.sendingInfo" class="apps-craft-contact-form-content-inner">
+											<h2><span>Estamos cambiando tu contraseña</span></h2>
 											<div class="apps-craft-contact-form">
 												<div class="sk-folding-cube">
 												  <div class="sk-cube1 sk-cube"></div>
@@ -127,8 +127,16 @@
 
 
 
-										<div ng-if="infoSended" class="apps-craft-contact-form-content-inner">
-											<h2><span>Listo, ¡dentro de poco nos pondremos en contacto contigo!</span></h2>
+										<div style="text-align: center !important" ng-if="state.infoSended" class="apps-craft-contact-form-content-inner">
+											<h2><span>Listo, ¡Perfecto, tu contraseña ya ha sido actualizada!</span></h2>
+											<div class="apps-craft-contact-form">
+																			
+											</div>
+										</div>
+
+
+										<div style="text-align: center !important" ng-if="state.errorShowed" class="apps-craft-contact-form-content-inner">
+											<h2><span>Lo sentimos, el enlace ha caducado</span></h2>
 											<div class="apps-craft-contact-form">
 																			
 											</div>

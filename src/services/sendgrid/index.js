@@ -72,7 +72,9 @@ export const sendMail = ({
 
 
 
+  //return sg.API(request)
 
+  let response = { statusCode: 200}
 
-  return sg.API(request)
+  return response
 }
