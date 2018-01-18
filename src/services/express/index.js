@@ -7,6 +7,8 @@ import bodyParser from 'body-parser'
 import { errorHandler as queryErrorHandler } from 'querymen'
 import { errorHandler as bodyErrorHandler } from 'bodymen'
 import { env } from '../../config'
+import path from 'path'
+import cons from 'consolidate'
 
 export default (apiRoot, routes) => {
   const app = express()
@@ -33,5 +35,13 @@ export default (apiRoot, routes) => {
   app.use(queryErrorHandler())
   app.use(bodyErrorHandler())
 
+  /**
+  ** Motor de vistas
+  **/
+  app.engine('html', cons.swig)
+  app.set('views', path.join(__dirname, '../../html'))
+  app.set('view engine', 'html')
+  app.use(express.static(path.join(__dirname, '../../views')))
+  
   return app
 }

@@ -10,14 +10,14 @@ export const create = ({ bodymen: { body: { email, link } } }, res, next) =>
     .then((reset) => {
       if (!reset) return null
       const { user, token } = reset
-      link = `${link.replace(/\/$/, '')}/${token}`
+      link = 'http://localhost:9000/api/forgot/'+token
       const content = `
-        Hey, ${user.name}.<br><br>
-        You requested a new password for your conectikids account.<br>
-        Please use the following link to set a new password. It will expire in 1 hour.<br><br>
-        <a href="${link}">${link}</a><br><br>
-        If you didn't make this request then you can safely ignore this email. :)<br><br>
-        &mdash; conectikids Team
+        Estimado ${user.name}.<br><br>
+        Has realizado una solicitud para cambiar la contraseña de tu cuenta en Conectikids.<br>
+        Porfavor, sigue el siguiente enlace para configurar tu nueva contraseña, dicho enlace expirara en un periodo de 1 hora.<br><br>
+        <a href="${link}">Cambiar mi contraseña</a><br><br>
+        Si tu no has realizado ninguna solicitud, entonces ignora este correo<br><br>
+        &mdash; Equipo Conectikids.
       `
       return sendMail({ toEmail: email, subject: 'conectikids - Password Reset', content })
     })

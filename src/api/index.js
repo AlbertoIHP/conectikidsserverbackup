@@ -48,4 +48,11 @@ router.use('/chats', chats)
 router.use('/messages', messages)
 router.use('/chatsusers', chatsusers)
 
+
+router.get('/forgot/:forgottoken', function(request, response, next) {
+
+	response.render( 'index' )
+
+});
+
 export default router
