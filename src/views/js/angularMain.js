@@ -69,7 +69,7 @@ function contactForm( $scope, $resource, $location )
 	{
 		var contentType = 'application/json'
 
-		var fetch = $resource('http://localhost:9000/api/password-resets/'+$scope.state.forgotToken, {}, {
+		var fetch = $resource('https://conectikidsback.herokuapp.com/api/password-resets/'+$scope.state.forgotToken, {}, {
 			put:
 			{
 				method: 'PUT',
