@@ -34,6 +34,7 @@
 	- [Create comments](#create-comments)
 	- [Delete comments](#delete-comments)
 	- [Retrieve comments](#retrieve-comments)
+	- [Retrieve comments of a activity](#retrieve-comments-of-a-activity)
 	- [Update comments](#update-comments)
 	
 - [Courses](#courses)
@@ -211,7 +212,7 @@
 
 
 
-	GET /chats
+	GET /chats/:id
 
 
 ### Parameters
@@ -219,11 +220,6 @@
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
 | access_token			| String			|  <p>admin access token.</p>							|
-| q			| String			| **optional** <p>Query to search.</p>							|
-| page			| Number			| **optional** <p>Page number.</p>							|
-| limit			| Number			| **optional** <p>Amount of returned items.</p>							|
-| sort			| String[]			| **optional** <p>Order of returned items.</p>							|
-| fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
 
 ## Update chats
 
@@ -395,7 +391,7 @@
 
 
 
-	GET /comments
+	GET /comments/:id
 
 
 ### Parameters
@@ -403,11 +399,19 @@
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
 | access_token			| String			|  <p>admin access token.</p>							|
-| q			| String			| **optional** <p>Query to search.</p>							|
-| page			| Number			| **optional** <p>Page number.</p>							|
-| limit			| Number			| **optional** <p>Amount of returned items.</p>							|
-| sort			| String[]			| **optional** <p>Order of returned items.</p>							|
-| fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
+
+## Retrieve comments of a activity
+
+
+
+	GET /comments/getactivitycomments/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
 
 ## Update comments
 
