@@ -1,16 +1,13 @@
 import mongoose, { Schema } from 'mongoose'
 
-const activitiesSchema = new Schema({
-  name: {
+const commentsSchema = new Schema({
+  content: {
     type: String
   },
-  description: {
+  activity_id: {
     type: String
   },
   createdBy_id: {
-    type: String
-  },
-  course_id: {
     type: String
   }
 }, {
@@ -21,15 +18,14 @@ const activitiesSchema = new Schema({
   }
 })
 
-activitiesSchema.methods = {
+commentsSchema.methods = {
   view (full) {
     const view = {
       // simple view
-      name: this.name,
       id: this.id,
-      description: this.description,
+      content: this.content,
+      activity_id: this.activity_id,
       createdBy_id: this.createdBy_id,
-      course_id: this.course_id,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     }
@@ -41,7 +37,7 @@ activitiesSchema.methods = {
   }
 }
 
-const model = mongoose.model('Activities', activitiesSchema)
+const model = mongoose.model('Comments', commentsSchema)
 
 export const schema = model.schema
 export default model

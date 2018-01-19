@@ -3,6 +3,7 @@
 
 
 - [Activities](#activities)
+	- [Retrieve all activities of a course](#retrieve-all-activities-of-a-course)
 	- [Create activities](#create-activities)
 	- [Delete activities](#delete-activities)
 	- [Retrieve activities](#retrieve-activities)
@@ -29,9 +30,16 @@
 	- [Retrieve childrens](#retrieve-childrens)
 	- [Update childrens](#update-childrens)
 	
+- [Comments](#comments)
+	- [Create comments](#create-comments)
+	- [Delete comments](#delete-comments)
+	- [Retrieve comments](#retrieve-comments)
+	- [Update comments](#update-comments)
+	
 - [Courses](#courses)
 	- [Create courses](#create-courses)
 	- [Delete courses](#delete-courses)
+	- [Retrieve courses that a user has registered](#retrieve-courses-that-a-user-has-registered)
 	- [Retrieve courses](#retrieve-courses)
 	- [Update courses](#update-courses)
 	
@@ -71,6 +79,19 @@
 
 # Activities
 
+## Retrieve all activities of a course
+
+
+
+	GET /activities/getcourseactivities/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+
 ## Create activities
 
 
@@ -105,7 +126,7 @@
 
 
 
-	GET /activities/:id
+	GET /activities
 
 
 ### Parameters
@@ -113,6 +134,11 @@
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
 | access_token			| String			|  <p>admin access token.</p>							|
+| q			| String			| **optional** <p>Query to search.</p>							|
+| page			| Number			| **optional** <p>Page number.</p>							|
+| limit			| Number			| **optional** <p>Amount of returned items.</p>							|
+| sort			| String[]			| **optional** <p>Order of returned items.</p>							|
+| fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
 
 ## Update activities
 
@@ -248,7 +274,7 @@
 
 
 
-	GET /chatsusers
+	GET /chatsusers/:id
 
 
 ### Parameters
@@ -256,11 +282,6 @@
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
 | access_token			| String			|  <p>admin access token.</p>							|
-| q			| String			| **optional** <p>Query to search.</p>							|
-| page			| Number			| **optional** <p>Page number.</p>							|
-| limit			| Number			| **optional** <p>Amount of returned items.</p>							|
-| sort			| String[]			| **optional** <p>Order of returned items.</p>							|
-| fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
 
 ## Update chatsusers
 
@@ -313,7 +334,7 @@
 
 
 
-	GET /childrens
+	GET /childrens/:id
 
 
 ### Parameters
@@ -321,11 +342,6 @@
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
 | access_token			| String			|  <p>admin access token.</p>							|
-| q			| String			| **optional** <p>Query to search.</p>							|
-| page			| Number			| **optional** <p>Page number.</p>							|
-| limit			| Number			| **optional** <p>Amount of returned items.</p>							|
-| sort			| String[]			| **optional** <p>Order of returned items.</p>							|
-| fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
 
 ## Update childrens
 
@@ -343,6 +359,71 @@
 | name			| 			|  <p>Childrens's name.</p>							|
 | parent_id			| 			|  <p>Childrens's parent_id.</p>							|
 | course_id			| 			|  <p>Childrens's course_id.</p>							|
+
+# Comments
+
+## Create comments
+
+
+
+	POST /comments
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>master access token.</p>							|
+| content			| 			|  <p>Comments's content.</p>							|
+| activity_id			| 			|  <p>Comments's activity_id.</p>							|
+| createdBy_id			| 			|  <p>Comments's createdBy_id.</p>							|
+
+## Delete comments
+
+
+
+	DELETE /comments/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+
+## Retrieve comments
+
+
+
+	GET /comments
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+| q			| String			| **optional** <p>Query to search.</p>							|
+| page			| Number			| **optional** <p>Page number.</p>							|
+| limit			| Number			| **optional** <p>Amount of returned items.</p>							|
+| sort			| String[]			| **optional** <p>Order of returned items.</p>							|
+| fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
+
+## Update comments
+
+
+
+	PUT /comments/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+| content			| 			|  <p>Comments's content.</p>							|
+| activity_id			| 			|  <p>Comments's activity_id.</p>							|
+| createdBy_id			| 			|  <p>Comments's createdBy_id.</p>							|
 
 # Courses
 
@@ -367,6 +448,19 @@
 
 
 	DELETE /courses/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+
+## Retrieve courses that a user has registered
+
+
+
+	GET /courses/getcoursebyuser/:id
 
 
 ### Parameters
@@ -502,7 +596,7 @@
 
 
 
-	GET /messages/:id
+	GET /messages
 
 
 ### Parameters
@@ -510,6 +604,11 @@
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
 | access_token			| String			|  <p>admin access token.</p>							|
+| q			| String			| **optional** <p>Query to search.</p>							|
+| page			| Number			| **optional** <p>Page number.</p>							|
+| limit			| Number			| **optional** <p>Amount of returned items.</p>							|
+| sort			| String[]			| **optional** <p>Order of returned items.</p>							|
+| fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
 
 ## Update messages
 
@@ -600,7 +699,7 @@
 
 
 
-	GET /tasks/:id
+	GET /tasks
 
 
 ### Parameters
@@ -608,6 +707,11 @@
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
 | access_token			| String			|  <p>admin access token.</p>							|
+| q			| String			| **optional** <p>Query to search.</p>							|
+| page			| Number			| **optional** <p>Page number.</p>							|
+| limit			| Number			| **optional** <p>Amount of returned items.</p>							|
+| sort			| String[]			| **optional** <p>Order of returned items.</p>							|
+| fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
 
 ## Update tasks
 

@@ -2,12 +2,12 @@ import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
 import { master, token } from '../../services/passport'
-import { create, index, show, update, destroy } from './controller'
+import { create, index, show, update, destroy, getActivitiesByCourseId } from './controller'
 import { schema } from './model'
 export Activities, { schema } from './model'
 
 const router = new Router()
-const { createdAt, description, createdBy_id, course_id } = schema.tree
+const { name, description, createdBy_id, course_id } = schema.tree
 
 /**
  * @api {post} /activities Create activities
@@ -26,14 +26,13 @@ const { createdAt, description, createdBy_id, course_id } = schema.tree
  */
 router.post('/',
   master(),
-  body({ createdAt, description, createdBy_id, course_id }),
+  body({ name, description, createdBy_id, course_id }),
   create)
 
 /**
  * @api {get} /activities Retrieve activities
  * @apiName RetrieveActivities
  * @apiGroup Activities
- * @apiPermission admin
  * @apiParam {String} access_token admin access token.
  * @apiUse listParams
  * @apiSuccess {Number} count Total amount of activities.
@@ -42,7 +41,7 @@ router.post('/',
  * @apiError 401 admin access only.
  */
 router.get('/',
-  token({ required: true, roles: ['admin'] }),
+  token({ required: true}),
   query(),
   index)
 
@@ -50,7 +49,6 @@ router.get('/',
  * @api {get} /activities/:id Retrieve activities
  * @apiName RetrieveActivities
  * @apiGroup Activities
- * @apiPermission admin
  * @apiParam {String} access_token admin access token.
  * @apiSuccess {Object} activities Activities's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
@@ -58,14 +56,13 @@ router.get('/',
  * @apiError 401 admin access only.
  */
 router.get('/:id',
-  token({ required: true, roles: ['admin'] }),
+  token({ required: true}),
   show)
 
 /**
  * @api {put} /activities/:id Update activities
  * @apiName UpdateActivities
  * @apiGroup Activities
- * @apiPermission admin
  * @apiParam {String} access_token admin access token.
  * @apiParam createdAt Activities's createdAt.
  * @apiParam description Activities's description.
@@ -77,22 +74,38 @@ router.get('/:id',
  * @apiError 401 admin access only.
  */
 router.put('/:id',
-  token({ required: true, roles: ['admin'] }),
-  body({ createdAt, description, createdBy_id, course_id }),
+  token({ required: true}),
+  body({ name, description, createdBy_id, course_id }),
   update)
 
 /**
  * @api {delete} /activities/:id Delete activities
  * @apiName DeleteActivities
  * @apiGroup Activities
- * @apiPermission admin
  * @apiParam {String} access_token admin access token.
  * @apiSuccess (Success 204) 204 No Content.
  * @apiError 404 Activities not found.
  * @apiError 401 admin access only.
  */
 router.delete('/:id',
-  token({ required: true, roles: ['admin'] }),
+  token({ required: true}),
   destroy)
+
+
+/**
+ * @api {get} /activities/getcourseactivities/:id Retrieve all activities of a course
+ * @apiName Course Activities retrieve
+ * @apiGroup Activities
+ * @apiParam {String} access_token admin access token.
+ * @apiSuccess {Object} activities Activities's data.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 404 Activities not found.
+ * @apiError 401 admin access only.
+ */
+router.get('/getcourseactivities/:id',
+  token({ required: true}),
+  getActivitiesByCourseId)
+
+
 
 export default router

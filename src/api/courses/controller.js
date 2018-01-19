@@ -39,3 +39,21 @@ export const destroy = ({ params }, res, next) =>
     .then((courses) => courses ? courses.remove() : null)
     .then(success(res, 204))
     .catch(next)
+
+
+
+
+/**
+**  Este metodo busca en la base de datos todos los cursos que un profesor tiene inscritos
+**/
+
+
+export const getCoursesByUserId = ({ params }, res, next) => 
+  Courses.find().where('teacher_id')
+    .equals(params.id)
+    .then(notFound(res))
+    .then((courses) => ({
+        teacherCourses: courses.map((courses) => courses.view())
+      }))
+    .then(success(res))
+    .catch(next)

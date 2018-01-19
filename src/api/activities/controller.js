@@ -39,3 +39,20 @@ export const destroy = ({ params }, res, next) =>
     .then((activities) => activities ? activities.remove() : null)
     .then(success(res, 204))
     .catch(next)
+
+
+
+/**
+**  Este metodo busca en la base de datos todas las actividades de un curso
+**/
+
+
+export const getActivitiesByCourseId = ({ params }, res, next) => 
+  Activities.find().where('course_id')
+    .equals(params.id)
+    .then(notFound(res))
+    .then((activities) => ({
+        courseActivities: activities.map((activities) => activities.view())
+      }))
+    .then(success(res))
+    .catch(next)

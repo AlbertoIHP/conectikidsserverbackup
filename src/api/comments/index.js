@@ -4,38 +4,39 @@ import { middleware as body } from 'bodymen'
 import { master, token } from '../../services/passport'
 import { create, index, show, update, destroy } from './controller'
 import { schema } from './model'
-export Gardens, { schema } from './model'
+export Comments, { schema } from './model'
 
 const router = new Router()
-const { name, direction } = schema.tree
+const { content, activity_id, createdBy_id } = schema.tree
 
 /**
- * @api {post} /gardens Create gardens
- * @apiName CreateGardens
- * @apiGroup Gardens
+ * @api {post} /comments Create comments
+ * @apiName CreateComments
+ * @apiGroup Comments
  * @apiPermission master
  * @apiParam {String} access_token master access token.
- * @apiParam name Gardens's name.
- * @apiParam direction Gardens's direction.
- * @apiSuccess {Object} gardens Gardens's data.
+ * @apiParam content Comments's content.
+ * @apiParam activity_id Comments's activity_id.
+ * @apiParam createdBy_id Comments's createdBy_id.
+ * @apiSuccess {Object} comments Comments's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
- * @apiError 404 Gardens not found.
+ * @apiError 404 Comments not found.
  * @apiError 401 master access only.
  */
 router.post('/',
   master(),
-  body({ name, direction }),
+  body({ content, activity_id, createdBy_id }),
   create)
 
 /**
- * @api {get} /gardens Retrieve gardens
- * @apiName RetrieveGardens
- * @apiGroup Gardens
+ * @api {get} /comments Retrieve comments
+ * @apiName RetrieveComments
+ * @apiGroup Comments
  * @apiPermission admin
  * @apiParam {String} access_token admin access token.
  * @apiUse listParams
- * @apiSuccess {Number} count Total amount of gardens.
- * @apiSuccess {Object[]} rows List of gardens.
+ * @apiSuccess {Number} count Total amount of comments.
+ * @apiSuccess {Object[]} rows List of comments.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 401 admin access only.
  */
@@ -45,14 +46,14 @@ router.get('/',
   index)
 
 /**
- * @api {get} /gardens/:id Retrieve gardens
- * @apiName RetrieveGardens
- * @apiGroup Gardens
+ * @api {get} /comments/:id Retrieve comments
+ * @apiName RetrieveComments
+ * @apiGroup Comments
  * @apiPermission admin
  * @apiParam {String} access_token admin access token.
- * @apiSuccess {Object} gardens Gardens's data.
+ * @apiSuccess {Object} comments Comments's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
- * @apiError 404 Gardens not found.
+ * @apiError 404 Comments not found.
  * @apiError 401 admin access only.
  */
 router.get('/:id',
@@ -60,31 +61,32 @@ router.get('/:id',
   show)
 
 /**
- * @api {put} /gardens/:id Update gardens
- * @apiName UpdateGardens
- * @apiGroup Gardens
+ * @api {put} /comments/:id Update comments
+ * @apiName UpdateComments
+ * @apiGroup Comments
  * @apiPermission admin
  * @apiParam {String} access_token admin access token.
- * @apiParam name Gardens's name.
- * @apiParam direction Gardens's direction.
- * @apiSuccess {Object} gardens Gardens's data.
+ * @apiParam content Comments's content.
+ * @apiParam activity_id Comments's activity_id.
+ * @apiParam createdBy_id Comments's createdBy_id.
+ * @apiSuccess {Object} comments Comments's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
- * @apiError 404 Gardens not found.
+ * @apiError 404 Comments not found.
  * @apiError 401 admin access only.
  */
 router.put('/:id',
   token({ required: true }),
-  body({ name, direction }),
+  body({ content, activity_id, createdBy_id }),
   update)
 
 /**
- * @api {delete} /gardens/:id Delete gardens
- * @apiName DeleteGardens
- * @apiGroup Gardens
+ * @api {delete} /comments/:id Delete comments
+ * @apiName DeleteComments
+ * @apiGroup Comments
  * @apiPermission admin
  * @apiParam {String} access_token admin access token.
  * @apiSuccess (Success 204) 204 No Content.
- * @apiError 404 Gardens not found.
+ * @apiError 404 Comments not found.
  * @apiError 401 admin access only.
  */
 router.delete('/:id',

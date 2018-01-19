@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
 import { master, token } from '../../services/passport'
-import { create, index, show, update, destroy } from './controller'
+import { create, index, show, update, destroy, getCoursesByUserId } from './controller'
 import { schema } from './model'
 export Courses, { schema } from './model'
 
@@ -32,7 +32,6 @@ router.post('/',
  * @api {get} /courses Retrieve courses
  * @apiName RetrieveCourses
  * @apiGroup Courses
- * @apiPermission admin
  * @apiParam {String} access_token admin access token.
  * @apiUse listParams
  * @apiSuccess {Number} count Total amount of courses.
@@ -41,7 +40,7 @@ router.post('/',
  * @apiError 401 admin access only.
  */
 router.get('/',
-  token({ required: true, roles: ['admin'] }),
+  token({ required: true }),
   query(),
   index)
 
@@ -49,7 +48,6 @@ router.get('/',
  * @api {get} /courses/:id Retrieve courses
  * @apiName RetrieveCourses
  * @apiGroup Courses
- * @apiPermission admin
  * @apiParam {String} access_token admin access token.
  * @apiSuccess {Object} courses Courses's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
@@ -57,8 +55,27 @@ router.get('/',
  * @apiError 401 admin access only.
  */
 router.get('/:id',
-  token({ required: true, roles: ['admin'] }),
+  token({ required: true }),
   show)
+
+
+/**
+ * @api {get} /courses/getcoursebyuser/:id Retrieve courses that a user has registered
+ * @apiName Get all the courses that an user have at the BD
+ * @apiGroup Courses
+ * @apiParam {String} access_token admin access token.
+ * @apiSuccess {Object} courses Courses's data.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 404 Courses not found.
+ * @apiError 401 admin access only.
+ */
+router.get('/getcoursebyuser/:id',
+  token({ required: true }),
+  getCoursesByUserId)
+
+
+
+
 
 /**
  * @api {put} /courses/:id Update courses
@@ -75,7 +92,7 @@ router.get('/:id',
  * @apiError 401 admin access only.
  */
 router.put('/:id',
-  token({ required: true, roles: ['admin'] }),
+  token({ required: true }),
   body({ name, garden_id, teacher_id }),
   update)
 
@@ -90,7 +107,7 @@ router.put('/:id',
  * @apiError 401 admin access only.
  */
 router.delete('/:id',
-  token({ required: true, roles: ['admin'] }),
+  token({ required: true }),
   destroy)
 
 export default router
