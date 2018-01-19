@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
 import { master, token } from '../../services/passport'
-import { create, index, show, update, destroy } from './controller'
+import { create, index, show, update, destroy, getComentsByActivityId } from './controller'
 import { schema } from './model'
 export Comments, { schema } from './model'
 
@@ -32,7 +32,6 @@ router.post('/',
  * @api {get} /comments Retrieve comments
  * @apiName RetrieveComments
  * @apiGroup Comments
- * @apiPermission admin
  * @apiParam {String} access_token admin access token.
  * @apiUse listParams
  * @apiSuccess {Number} count Total amount of comments.
@@ -49,7 +48,6 @@ router.get('/',
  * @api {get} /comments/:id Retrieve comments
  * @apiName RetrieveComments
  * @apiGroup Comments
- * @apiPermission admin
  * @apiParam {String} access_token admin access token.
  * @apiSuccess {Object} comments Comments's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
@@ -60,11 +58,26 @@ router.get('/:id',
   token({ required: true }),
   show)
 
+
+/**
+ * @api {get} /comments/getactivitycomments/:id Retrieve comments of a activity
+ * @apiName Retrieve comments of a activity
+ * @apiGroup Comments
+ * @apiParam {String} access_token admin access token.
+ * @apiSuccess {Object} comments Comments's data.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 404 Comments not found.
+ * @apiError 401 admin access only.
+ */
+router.get('/getactivitycomments/:id',
+  token({ required: true }),
+  getComentsByActivityId)
+
+
 /**
  * @api {put} /comments/:id Update comments
  * @apiName UpdateComments
  * @apiGroup Comments
- * @apiPermission admin
  * @apiParam {String} access_token admin access token.
  * @apiParam content Comments's content.
  * @apiParam activity_id Comments's activity_id.
@@ -83,7 +96,6 @@ router.put('/:id',
  * @api {delete} /comments/:id Delete comments
  * @apiName DeleteComments
  * @apiGroup Comments
- * @apiPermission admin
  * @apiParam {String} access_token admin access token.
  * @apiSuccess (Success 204) 204 No Content.
  * @apiError 404 Comments not found.

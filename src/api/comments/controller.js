@@ -39,3 +39,20 @@ export const destroy = ({ params }, res, next) =>
     .then((comments) => comments ? comments.remove() : null)
     .then(success(res, 204))
     .catch(next)
+
+
+
+/**
+**  Este metodo busca en la base de datos todos los cursos que un profesor tiene inscritos
+**/
+
+
+export const getComentsByActivityId = ({ params }, res, next) => 
+  Comments.find().where('activity_id')
+    .equals(params.id)
+    .then(notFound(res))
+    .then((comments) => ({
+        teacherCourses: comments.map((comments) => comments.view())
+      }))
+    .then(success(res))
+    .catch(next)
