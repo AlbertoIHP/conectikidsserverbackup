@@ -25,14 +25,13 @@ coursesSchema.methods = {
       id: this.id,
       name: this.name,
       garden_id: this.garden_id,
-      teacher_id: this.teacher_id,
-      createdAt: this.createdAt,
-      updatedAt: this.updatedAt
+      teacher_id: this.teacher_id
     }
 
     return full ? {
-      ...view
-      // add properties for a full view
+      ...view,
+      createdAt: this.createdAt,
+      updatedAt: this.updatedAt
     } : view
   }
 }

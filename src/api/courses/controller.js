@@ -64,18 +64,14 @@ export const getCoursesByUserId = ({ params }, res, next) =>
 
             respuesta.teacherCourses[i].garden_id = gardens.view()
 
-           User.findById( respuesta.teacherCourses[i].teacher_id ).then( (user) => {
-              respuesta.teacherCourses[i].teacher_id = user.view()
+            User.findById( respuesta.teacherCourses[i].teacher_id ).then( (user) => {
+                respuesta.teacherCourses[i].teacher_id = user.view()
+              })
 
-              console.log(teacherCourses[i])
-            })
-
-          })
-
-      
+          })      
        }
 
-        return  respuesta        
+      return  respuesta        
     })
     .then(success(res))
     .catch(next)

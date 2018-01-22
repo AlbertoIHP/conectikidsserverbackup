@@ -35,11 +35,12 @@ activitiesSchema.methods = {
       course_id: this.course_id,
       picture: this.picture,
       createdAt: this.createdAt,
-      updatedAt: this.updatedAt
     }
 
     return full ? {
-      ...view
+      ...view,
+      createdBy_id: this.createdBy_id,
+      updatedAt: this.updatedAt
       // add properties for a full view
     } : view
   }

@@ -21,14 +21,13 @@ gardensSchema.methods = {
       // simple view
       id: this.id,
       name: this.name,
-      direction: this.direction,
-      createdAt: this.createdAt,
-      updatedAt: this.updatedAt
+      direction: this.direction
     }
 
     return full ? {
-      ...view
-      // add properties for a full view
+      ...view,
+      createdAt: this.createdAt,
+      updatedAt: this.updatedAt
     } : view
   }
 }
