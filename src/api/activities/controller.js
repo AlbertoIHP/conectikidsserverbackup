@@ -1,5 +1,8 @@
 import { success, notFound } from '../../services/response/'
 import { Activities } from '.'
+import { User } from '../user'
+import { Courses } from '../courses'
+import { Gardens } from '../gardens'
 
 export const create = ({ bodymen: { body } }, res, next) =>
   Activities.create(body)
@@ -51,8 +54,38 @@ export const getActivitiesByCourseId = ({ params }, res, next) =>
   Activities.find().where('course_id')
     .equals(params.id)
     .then(notFound(res))
-    .then((activities) => ({
-        courseActivities: activities.map((activities) => activities.view())
-      }))
+    .then( async function( activities )
+    {
+      let respuesta = { courseActivities: activities.map((activities) => activities.view()) }
+
+       for( let i = 0 ; i < respuesta.courseActivities.length ; i ++ )
+       {
+         await Courses.findById( respuesta.courseActivities[i].course_id ).then( (courses) => {
+
+            respuesta.courseActivities[i].course_id = courses.view()
+
+            User.findById( respuesta.courseActivities[i].createdBy_id ).then( (user) => {
+                    respuesta.courseActivities[i].createdBy_id = user.view()
+
+                })
+
+
+            Gardens.findById( respuesta.courseActivities[i].course_id.garden_id ).then( (gardens) => {
+                respuesta.courseActivities[i].course_id.garden_id = gardens.view()
+
+
+              })
+
+            User.findById( respuesta.courseActivities[i].course_id.teacher_id ).then( (user) => {
+              respuesta.courseActivities[i].course_id.teacher_id = user.view()
+            })
+
+
+          })     
+       }
+
+       return  respuesta  
+
+    })
     .then(success(res))
     .catch(next)
