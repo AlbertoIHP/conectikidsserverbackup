@@ -50,6 +50,12 @@
 	- [Retrieve gardens](#retrieve-gardens)
 	- [Update gardens](#update-gardens)
 	
+- [Likes](#likes)
+	- [Create likes](#create-likes)
+	- [Delete likes](#delete-likes)
+	- [Retrieve likes](#retrieve-likes)
+	- [Update likes](#update-likes)
+	
 - [Messages](#messages)
 	- [Create messages](#create-messages)
 	- [Delete messages](#delete-messages)
@@ -212,7 +218,7 @@
 
 
 
-	GET /chats/:id
+	GET /chats
 
 
 ### Parameters
@@ -220,6 +226,11 @@
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
 | access_token			| String			|  <p>admin access token.</p>							|
+| q			| String			| **optional** <p>Query to search.</p>							|
+| page			| Number			| **optional** <p>Page number.</p>							|
+| limit			| Number			| **optional** <p>Amount of returned items.</p>							|
+| sort			| String[]			| **optional** <p>Order of returned items.</p>							|
+| fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
 
 ## Update chats
 
@@ -270,7 +281,7 @@
 
 
 
-	GET /chatsusers/:id
+	GET /chatsusers
 
 
 ### Parameters
@@ -278,6 +289,11 @@
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
 | access_token			| String			|  <p>admin access token.</p>							|
+| q			| String			| **optional** <p>Query to search.</p>							|
+| page			| Number			| **optional** <p>Page number.</p>							|
+| limit			| Number			| **optional** <p>Amount of returned items.</p>							|
+| sort			| String[]			| **optional** <p>Order of returned items.</p>							|
+| fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
 
 ## Update chatsusers
 
@@ -330,7 +346,7 @@
 
 
 
-	GET /childrens/:id
+	GET /childrens
 
 
 ### Parameters
@@ -338,6 +354,11 @@
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
 | access_token			| String			|  <p>admin access token.</p>							|
+| q			| String			| **optional** <p>Query to search.</p>							|
+| page			| Number			| **optional** <p>Page number.</p>							|
+| limit			| Number			| **optional** <p>Amount of returned items.</p>							|
+| sort			| String[]			| **optional** <p>Order of returned items.</p>							|
+| fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
 
 ## Update childrens
 
@@ -391,7 +412,7 @@
 
 
 
-	GET /comments/:id
+	GET /comments
 
 
 ### Parameters
@@ -399,6 +420,11 @@
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
 | access_token			| String			|  <p>admin access token.</p>							|
+| q			| String			| **optional** <p>Query to search.</p>							|
+| page			| Number			| **optional** <p>Page number.</p>							|
+| limit			| Number			| **optional** <p>Amount of returned items.</p>							|
+| sort			| String[]			| **optional** <p>Order of returned items.</p>							|
+| fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
 
 ## Retrieve comments of a activity
 
@@ -536,7 +562,7 @@
 
 
 
-	GET /gardens
+	GET /gardens/:id
 
 
 ### Parameters
@@ -544,11 +570,6 @@
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
 | access_token			| String			|  <p>admin access token.</p>							|
-| q			| String			| **optional** <p>Query to search.</p>							|
-| page			| Number			| **optional** <p>Page number.</p>							|
-| limit			| Number			| **optional** <p>Amount of returned items.</p>							|
-| sort			| String[]			| **optional** <p>Order of returned items.</p>							|
-| fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
 
 ## Update gardens
 
@@ -564,6 +585,64 @@
 | access_token			| String			|  <p>admin access token.</p>							|
 | name			| 			|  <p>Gardens's name.</p>							|
 | direction			| 			|  <p>Gardens's direction.</p>							|
+
+# Likes
+
+## Create likes
+
+
+
+	POST /likes
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>master access token.</p>							|
+| user_id			| 			|  <p>Likes's user_id.</p>							|
+| activity_id			| 			|  <p>Likes's activity_id.</p>							|
+
+## Delete likes
+
+
+
+	DELETE /likes/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+
+## Retrieve likes
+
+
+
+	GET /likes/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+
+## Update likes
+
+
+
+	PUT /likes/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+| user_id			| 			|  <p>Likes's user_id.</p>							|
+| activity_id			| 			|  <p>Likes's activity_id.</p>							|
 
 # Messages
 
