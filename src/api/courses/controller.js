@@ -1,5 +1,7 @@
 import { success, notFound } from '../../services/response/'
 import { Courses } from '.'
+import { Gardens } from '../gardens'
+import { User } from '../user'
 
 export const create = ({ bodymen: { body } }, res, next) =>
   Courses.create(body)
@@ -52,8 +54,28 @@ export const getCoursesByUserId = ({ params }, res, next) =>
   Courses.find().where('teacher_id')
     .equals(params.id)
     .then(notFound(res))
-    .then((courses) => ({
-        teacherCourses: courses.map((courses) => courses.view())
-      }))
+    .then( async function(courses){
+
+       let respuesta = {teacherCourses: courses.map((courses) => courses.view()) }
+
+       for( let i = 0 ; i < respuesta.teacherCourses.length ; i ++ )
+       {
+         await Gardens.findById( respuesta.teacherCourses[i].garden_id ).then( (gardens) => {
+
+            respuesta.teacherCourses[i].garden_id = gardens.view()
+
+           User.findById( respuesta.teacherCourses[i].teacher_id ).then( (user) => {
+              respuesta.teacherCourses[i].teacher_id = user.view()
+
+              console.log(teacherCourses[i])
+            })
+
+          })
+
+      
+       }
+
+        return  respuesta        
+    })
     .then(success(res))
     .catch(next)
