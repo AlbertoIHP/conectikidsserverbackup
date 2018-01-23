@@ -15,6 +15,9 @@ const activitiesSchema = new Schema({
   },
   urlPhoto: {
     type: String
+  },
+  activityType: {
+    type: String
   }
 }, {
   timestamps: true,
@@ -34,6 +37,7 @@ activitiesSchema.methods = {
       createdBy_id: this.createdBy_id,
       course_id: this.course_id,
       urlPhoto: this.urlPhoto,
+      activityType: this.activityType,
       createdAt: this.createdAt,
     }
 

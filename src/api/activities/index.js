@@ -7,7 +7,7 @@ import { schema } from './model'
 export Activities, { schema } from './model'
 
 const router = new Router()
-const { name, description, createdBy_id, course_id, urlPhoto } = schema.tree
+const { name, description, createdBy_id, course_id, urlPhoto, activityType } = schema.tree
 
 /**
  * @api {post} /activities Create activities
@@ -26,7 +26,7 @@ const { name, description, createdBy_id, course_id, urlPhoto } = schema.tree
  */
 router.post('/',
   master(),
-  body({ name, description, createdBy_id, course_id, urlPhoto }),
+  body({ name, description, createdBy_id, course_id, urlPhoto, activityType }),
   create)
 
 /**
@@ -75,7 +75,7 @@ router.get('/:id',
  */
 router.put('/:id',
   token({ required: true}),
-  body({ name, description, createdBy_id, course_id, urlPhoto }),
+  body({ name, description, createdBy_id, course_id, urlPhoto, activityType }),
   update)
 
 /**
