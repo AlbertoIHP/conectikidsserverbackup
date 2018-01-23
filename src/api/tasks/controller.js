@@ -39,3 +39,31 @@ export const destroy = ({ params }, res, next) =>
     .then((tasks) => tasks ? tasks.remove() : null)
     .then(success(res, 204))
     .catch(next)
+
+
+
+export const getTasksByCourseId = ({ params }, res, next) => 
+  Tasks.find().where('course_id')
+    .equals(params.id)
+    .then(notFound(res))
+    .then( async function( tasks ){
+
+       let respuesta = { courseTasks: tasks.map((tasks) => tasks.view()) }
+
+       // for( let i = 0 ; i < respuesta.teacherCourses.length ; i ++ )
+       // {
+       //   await Gardens.findById( respuesta.teacherCourses[i].garden_id ).then( (gardens) => {
+
+       //      respuesta.teacherCourses[i].garden_id = gardens.view()
+
+       //      User.findById( respuesta.teacherCourses[i].teacher_id ).then( (user) => {
+       //          respuesta.teacherCourses[i].teacher_id = user.view()
+       //        })
+
+       //    })      
+       // }
+
+      return  respuesta        
+    })
+    .then(success(res))
+    .catch(next)

@@ -15,6 +15,9 @@ const tasksSchema = new Schema({
   },
   course_id: {
     type: String
+  },
+  createdBy_id: {
+    type: String
   }
 }, {
   timestamps: true,
