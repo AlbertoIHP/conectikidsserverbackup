@@ -2,12 +2,12 @@ import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
 import { master, token } from '../../services/passport'
-import { create, index, show, update, destroy, getActivitiesByCourseId } from './controller'
+import { create, index, show, update, destroy, getActivitiesByCourseId, getActivitiesByDate } from './controller'
 import { schema } from './model'
 export Activities, { schema } from './model'
 
 const router = new Router()
-const { name, description, createdBy_id, course_id, picture } = schema.tree
+const { name, description, createdBy_id, course_id, urlPhoto } = schema.tree
 
 /**
  * @api {post} /activities Create activities
@@ -26,7 +26,7 @@ const { name, description, createdBy_id, course_id, picture } = schema.tree
  */
 router.post('/',
   master(),
-  body({ name, description, createdBy_id, course_id, picture }),
+  body({ name, description, createdBy_id, course_id, urlPhoto }),
   create)
 
 /**
@@ -75,7 +75,7 @@ router.get('/:id',
  */
 router.put('/:id',
   token({ required: true}),
-  body({ name, description, createdBy_id, course_id, picture }),
+  body({ name, description, createdBy_id, course_id, urlPhoto }),
   update)
 
 /**
@@ -106,6 +106,18 @@ router.get('/getcourseactivities/:id',
   token({ required: true}),
   getActivitiesByCourseId)
 
-
+/**
+ * @api {get} /activities/getactivitiesbydate/:id Retrieve all activities of a course
+ * @apiName Course Activities retrieve
+ * @apiGroup Activities
+ * @apiParam {String} access_token admin access token.
+ * @apiSuccess {Object} activities Activities's data.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 404 Activities not found.
+ * @apiError 401 admin access only.
+ */
+router.get('/getactivitiesbydate/:id',
+  token({ required: true}),
+  getActivitiesByDate)
 
 export default router

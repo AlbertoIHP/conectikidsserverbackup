@@ -13,7 +13,7 @@ const activitiesSchema = new Schema({
   course_id: {
     type: String
   },
-  picture: {
+  urlPhoto: {
     type: String
   }
 }, {
@@ -33,7 +33,7 @@ activitiesSchema.methods = {
       description: this.description,
       createdBy_id: this.createdBy_id,
       course_id: this.course_id,
-      picture: this.picture,
+      urlPhoto: this.urlPhoto,
       createdAt: this.createdAt,
     }
 

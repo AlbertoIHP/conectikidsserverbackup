@@ -89,3 +89,30 @@ export const getActivitiesByCourseId = ({ params }, res, next) =>
     })
     .then(success(res))
     .catch(next)
+
+
+
+export const getActivitiesByDate = ({ params }, res, next) => 
+  Activities.find()
+    .then(notFound(res))
+    .then(( activities ) => {
+
+      let respuesta = { dateActivities: activities.map((activities) => activities.view()) }
+      
+      let courseId = params.id.split('&')[0]
+      let date = params.id.split('&')[1]
+
+      let activitiesArray = respuesta.dateActivities
+
+
+      let filteredActivities = activitiesArray.filter( activity => activity.course_id === courseId )
+
+
+      filteredActivities = filteredActivities.filter( activity => JSON.stringify(activity.createdAt).split('T')[0].split('"')[1] ===  date  )
+
+
+      console.log( filteredActivities)
+      return { fileteredActivities: filteredActivities }     
+    })
+    .then(success(res))
+    .catch(next)
