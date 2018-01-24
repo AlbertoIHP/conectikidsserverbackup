@@ -31,6 +31,24 @@ websocket.on( 'connection', (socket) => {
        socket.emit( 'activityAdded', activity )     
    })
 
+   socket.on( 'commentAdded', ( comment ) =>  {
+       socket.broadcast.emit('commentAdded', comment)  
+       socket.emit( 'commentAdded', comment )     
+   })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
    socket.on( 'messageSended', ( message ) =>  {
        socket.broadcast.emit( 'messageSended', message )  
        socket.emit( 'messageSended', message )     

@@ -67,6 +67,12 @@
 	- [Submit password](#submit-password)
 	- [Verify token](#verify-token)
 	
+- [Tags](#tags)
+	- [Create tags](#create-tags)
+	- [Delete tags](#delete-tags)
+	- [Retrieve tags](#retrieve-tags)
+	- [Update tags](#update-tags)
+	
 - [Tasks](#tasks)
 	- [Create tasks](#create-tasks)
 	- [Delete tasks](#delete-tasks)
@@ -133,7 +139,7 @@
 
 
 
-	GET /activities
+	GET /activities/:id
 
 
 ### Parameters
@@ -141,11 +147,6 @@
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
 | access_token			| String			|  <p>admin access token.</p>							|
-| q			| String			| **optional** <p>Query to search.</p>							|
-| page			| Number			| **optional** <p>Page number.</p>							|
-| limit			| Number			| **optional** <p>Amount of returned items.</p>							|
-| sort			| String[]			| **optional** <p>Order of returned items.</p>							|
-| fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
 
 ## Update activities
 
@@ -218,7 +219,7 @@
 
 
 
-	GET /chats
+	GET /chats/:id
 
 
 ### Parameters
@@ -226,11 +227,6 @@
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
 | access_token			| String			|  <p>admin access token.</p>							|
-| q			| String			| **optional** <p>Query to search.</p>							|
-| page			| Number			| **optional** <p>Page number.</p>							|
-| limit			| Number			| **optional** <p>Amount of returned items.</p>							|
-| sort			| String[]			| **optional** <p>Order of returned items.</p>							|
-| fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
 
 ## Update chats
 
@@ -281,7 +277,7 @@
 
 
 
-	GET /chatsusers
+	GET /chatsusers/:id
 
 
 ### Parameters
@@ -289,11 +285,6 @@
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
 | access_token			| String			|  <p>admin access token.</p>							|
-| q			| String			| **optional** <p>Query to search.</p>							|
-| page			| Number			| **optional** <p>Page number.</p>							|
-| limit			| Number			| **optional** <p>Amount of returned items.</p>							|
-| sort			| String[]			| **optional** <p>Order of returned items.</p>							|
-| fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
 
 ## Update chatsusers
 
@@ -346,7 +337,7 @@
 
 
 
-	GET /childrens
+	GET /childrens/:id
 
 
 ### Parameters
@@ -354,11 +345,6 @@
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
 | access_token			| String			|  <p>admin access token.</p>							|
-| q			| String			| **optional** <p>Query to search.</p>							|
-| page			| Number			| **optional** <p>Page number.</p>							|
-| limit			| Number			| **optional** <p>Amount of returned items.</p>							|
-| sort			| String[]			| **optional** <p>Order of returned items.</p>							|
-| fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
 
 ## Update childrens
 
@@ -503,7 +489,7 @@
 
 
 
-	GET /courses/:id
+	GET /courses
 
 
 ### Parameters
@@ -511,6 +497,11 @@
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
 | access_token			| String			|  <p>admin access token.</p>							|
+| q			| String			| **optional** <p>Query to search.</p>							|
+| page			| Number			| **optional** <p>Page number.</p>							|
+| limit			| Number			| **optional** <p>Amount of returned items.</p>							|
+| sort			| String[]			| **optional** <p>Order of returned items.</p>							|
+| fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
 
 ## Update courses
 
@@ -562,7 +553,7 @@
 
 
 
-	GET /gardens/:id
+	GET /gardens
 
 
 ### Parameters
@@ -570,6 +561,11 @@
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
 | access_token			| String			|  <p>admin access token.</p>							|
+| q			| String			| **optional** <p>Query to search.</p>							|
+| page			| Number			| **optional** <p>Page number.</p>							|
+| limit			| Number			| **optional** <p>Amount of returned items.</p>							|
+| sort			| String[]			| **optional** <p>Order of returned items.</p>							|
+| fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
 
 ## Update gardens
 
@@ -744,6 +740,69 @@
 
 	GET /password-resets/:token
 
+
+# Tags
+
+## Create tags
+
+
+
+	POST /tags
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>master access token.</p>							|
+| activity_id			| 			|  <p>Tags's activity_id.</p>							|
+| tagged_id			| 			|  <p>Tags's tagged_id.</p>							|
+
+## Delete tags
+
+
+
+	DELETE /tags/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+
+## Retrieve tags
+
+
+
+	GET /tags
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+| q			| String			| **optional** <p>Query to search.</p>							|
+| page			| Number			| **optional** <p>Page number.</p>							|
+| limit			| Number			| **optional** <p>Amount of returned items.</p>							|
+| sort			| String[]			| **optional** <p>Order of returned items.</p>							|
+| fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
+
+## Update tags
+
+
+
+	PUT /tags/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+| activity_id			| 			|  <p>Tags's activity_id.</p>							|
+| tagged_id			| 			|  <p>Tags's tagged_id.</p>							|
 
 # Tasks
 
