@@ -2,10 +2,12 @@ import mongoose, { Schema } from 'mongoose'
 
 const tagsSchema = new Schema({
   activity_id: {
-    type: String
+    type: String,
+    required: true
   },
   tagged_id: {
-    type: String
+    type: String,
+    required: true
   }
 }, {
   timestamps: true,
