@@ -52,7 +52,7 @@ export const getComentsByActivityId = ({ params }, res, next) =>
     .equals(params.id)
     .then(notFound(res))
     .then((comments) => ({
-        teacherCourses: comments.map((comments) => comments.view())
+        activityComments: comments.map((comments) => comments.view())
       }))
     .then(success(res))
     .catch(next)
