@@ -1,5 +1,6 @@
 import { success, notFound } from '../../services/response/'
 import { Childrens } from '.'
+import { User } from '../user'
 
 export const create = ({ bodymen: { body } }, res, next) =>
   Childrens.create(body)
@@ -70,32 +71,24 @@ export const getChildrensParentByCourseId = ({ params }, res, next) =>
         newArray.push(lookupObject[i]);
       }
 
+      respuesta = { parentsArray: [] }
 
-      console.log(parents)
+      for( let i in newArray )
+      {
+        await User.findById(newArray[i].id)
+                    .then(notFound(res))
+                    .then( async (user) => {
+                      respuesta.parentsArray.push( user.view() )
+                    })
+                    .then(success(res))
+                    .catch(next)
+      }
 
-      return { parents: newArray } 
+
+      return respuesta
 
     })
     .then(success(res))
     .catch(next)
 
 
-
-
-
-
-
-
-    function removeDuplicates(originalArray, prop) {
-     var newArray = [];
-     var lookupObject  = {};
-
-     for(var i in originalArray) {
-        lookupObject[originalArray[i][prop]] = originalArray[i];
-     }
-
-     for(i in lookupObject) {
-         newArray.push(lookupObject[i]);
-     }
-      return newArray;
- }
