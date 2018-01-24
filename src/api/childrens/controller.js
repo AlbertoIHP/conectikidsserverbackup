@@ -58,7 +58,7 @@ export const getChildrensParentByCourseId = ({ params }, res, next) =>
 
       console.log(parents)
 
-       return  respuesta  
+      return { parents: parents } 
 
     })
     .then(success(res))
