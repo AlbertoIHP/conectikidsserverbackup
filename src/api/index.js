@@ -12,6 +12,7 @@ import messages from './messages'
 import chatsusers from './chatsusers'
 import comments from './comments'
 import likes from './likes'
+import tags from './tags'
 
 const router = new Router()
 
@@ -51,6 +52,7 @@ router.use('/messages', messages)
 router.use('/chatsusers', chatsusers)
 router.use('/comments', comments)
 router.use('/likes', likes)
+router.use('/tags', tags)
 
 
 router.get('/forgot/:forgottoken', function(request, response, next) {
