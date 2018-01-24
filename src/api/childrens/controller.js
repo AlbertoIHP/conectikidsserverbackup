@@ -56,10 +56,46 @@ export const getChildrensParentByCourseId = ({ params }, res, next) =>
         parents.push( {id: children.parent_id } )
       }
 
+
+      let newArray = []
+      let lookupObject = {}
+
+      for( let i in parents )
+      {
+        lookupObject[parents[i]['id']] = parents[i]
+      }
+
+      for( let i in lookupObject )
+      {
+        newArray.push(lookupObject[i]);
+      }
+
+
       console.log(parents)
 
-      return { parents: parents } 
+      return { parents: newArray } 
 
     })
     .then(success(res))
     .catch(next)
+
+
+
+
+
+
+
+
+    function removeDuplicates(originalArray, prop) {
+     var newArray = [];
+     var lookupObject  = {};
+
+     for(var i in originalArray) {
+        lookupObject[originalArray[i][prop]] = originalArray[i];
+     }
+
+     for(i in lookupObject) {
+         newArray.push(lookupObject[i]);
+     }
+      return newArray;
+ }
