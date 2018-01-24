@@ -39,3 +39,27 @@ export const destroy = ({ params }, res, next) =>
     .then((childrens) => childrens ? childrens.remove() : null)
     .then(success(res, 204))
     .catch(next)
+
+
+export const getChildrensParentByCourseId = ({ params }, res, next) => 
+  Childrens.find().where('course_id')
+    .equals(params.id)
+    .then(notFound(res))
+    .then( async function( childrens )
+    {
+      let respuesta = { childrensCourse: childrens.map((childrens) => childrens.view()) }
+
+      let parents = []
+
+      for( let children of respuesta.childrensCourse )
+      {
+        parents.push( {id: children.parent_id } )
+      }
+
+      console.log(parents)
+
+       return  respuesta  
+
+    })
+    .then(success(res))
+    .catch(next)
