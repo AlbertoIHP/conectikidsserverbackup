@@ -1,5 +1,6 @@
 import { success, notFound } from '../../services/response/'
 import { Comments } from '.'
+import { User } from 'user'
 
 export const create = ({ bodymen: { body } }, res, next) =>
   Comments.create(body)
@@ -47,12 +48,25 @@ export const destroy = ({ params }, res, next) =>
 **/
 
 
-export const getComentsByActivityId = ({ params }, res, next) => 
+    export const getActivitiesByCourseId = ({ params }, res, next) => 
   Comments.find().where('activity_id')
     .equals(params.id)
     .then(notFound(res))
-    .then((comments) => ({
-        activityComments: comments.map((comments) => comments.view())
-      }))
+    .then( async function( comments )
+    {
+      let respuesta = { activityComments: comments.map((comments) => comments.view()) }
+
+       for( let i = 0 ; i < respuesta.courseActivities.length ; i ++ )
+       {
+         await User.findById( respuesta.activityComments[i].createdBy_id ).then( ( user ) => {
+
+            respuesta.courseActivities[i].createdBy_id = user.view()
+
+          })     
+       }
+
+       return  respuesta  
+
+    })
     .then(success(res))
     .catch(next)

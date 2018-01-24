@@ -74,7 +74,7 @@ router.get('/:id',
  * @apiParam {String} access_token admin access token.
  * @apiSuccess {Object} childrens Childrens's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
- * @apiError 404 Childrens not found.
+ * @apiError 404 Childrens not found. 
  * @apiError 401 admin access only.
  */
 router.get('/getchildrensparentbycourseid/:id',
