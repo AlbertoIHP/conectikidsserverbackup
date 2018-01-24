@@ -2,22 +2,27 @@ import mongoose, { Schema } from 'mongoose'
 
 const activitiesSchema = new Schema({
   name: {
-    type: String
+    type: String,
+    required: true
   },
   description: {
-    type: String
+    type: String,
+    required: true
   },
   createdBy_id: {
-    type: String
+    type: String,
+    required: true
   },
   course_id: {
-    type: String
+    type: String,
+    required: true
   },
   urlPhoto: {
     type: String
   },
   activityType: {
-    type: String
+    type: String,
+    required: true
   }
 }, {
   timestamps: true,

@@ -2,13 +2,16 @@ import mongoose, { Schema } from 'mongoose'
 
 const commentsSchema = new Schema({
   content: {
-    type: String
+    type: String,
+    required: true
   },
   activity_id: {
-    type: String
+    type: String,
+    required: true
   },
   createdBy_id: {
-    type: String
+    type: String,
+    required: true
   }
 }, {
   timestamps: true,

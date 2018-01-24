@@ -2,13 +2,16 @@ import mongoose, { Schema } from 'mongoose'
 
 const coursesSchema = new Schema({
   name: {
-    type: String
+    type: String,
+    required: true
   },
   garden_id: {
-    type: String
+    type: String,
+    required: true
   },
   teacher_id: {
-    type: String
+    type: String,
+    required: true
   }
 }, {
   timestamps: true,

@@ -2,16 +2,21 @@ import mongoose, { Schema } from 'mongoose'
 
 const childrensSchema = new Schema({
   rut: {
-    type: String
+    type: String,
+    required: true,
+    unique: true
   },
   name: {
-    type: String
+    type: String,
+    required: true
   },
   parent_id: {
-    type: String
+    type: String,
+    required: true
   },
   course_id: {
-    type: String
+    type: String,
+    required: true
   }
 }, {
   timestamps: true,

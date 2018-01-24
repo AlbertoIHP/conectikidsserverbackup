@@ -2,10 +2,12 @@ import mongoose, { Schema } from 'mongoose'
 
 const gardensSchema = new Schema({
   name: {
-    type: String
+    type: String,
+    required: true
   },
   direction: {
-    type: String
+    type: String,
+    required: true
   }
 }, {
   timestamps: true,

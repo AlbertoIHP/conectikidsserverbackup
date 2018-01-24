@@ -2,22 +2,28 @@ import mongoose, { Schema } from 'mongoose'
 
 const tasksSchema = new Schema({
   name: {
-    type: String
+    type: String,
+    required: true
   },
   description: {
-    type: String
+    type: String,
+    required: true
   },
   selectedDate: {
-    type: String
+    type: String,
+    required: true
   },
   timeof: {
-    type: String
+    type: String,
+    required: true
   },
   course_id: {
-    type: String
+    type: String,
+    required: true
   },
   createdBy_id: {
-    type: String
+    type: String,
+    required: true
   }
 }, {
   timestamps: true,
