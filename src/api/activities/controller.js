@@ -116,7 +116,7 @@ export const getActivitiesByDate = ({ params }, res, next) =>
       {
 
 
-            await Tags.find().where('activity_id').equals( activity.id ).then( (tags){
+            await Tags.find().where('activity_id').equals( activity.id ).then( (tags) => {
               activity.tags = tags
             })
 
