@@ -51,9 +51,13 @@ export const getChatsByUserAndCourseId = ({ params }, res, next) =>
     .then(notFound(res))
     .then( ( chats ) =>
     {
+      console.log("parametros del request: ",params)
       let respuesta = { userChats: chats.map((chats) => chats.view()) }
 
+      console.log("Respuesta de la BD ",respuesta)
       respuesta = respuesta.userChats.filter( chat => chat.course_id === params.id.split('&')[0] )
+
+      console.log(" Filtrado por la id del curso ", respuesta)
 
       return  { userChats: respuesta }  
 
