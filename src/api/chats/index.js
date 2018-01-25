@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
 import { master, token } from '../../services/passport'
-import { create, index, show, update, destroy } from './controller'
+import { create, index, show, update, destroy, getChatsByCourseId } from './controller'
 import { schema } from './model'
 export Chats, { schema } from './model'
 
@@ -44,6 +44,23 @@ router.get('/',
   index)
 
 /**
+ * @api {get} /chats/getchatsbycourseid/:id Retrieve chats
+ * @apiName RetrieveChats
+ * @apiGroup Chats
+ * @apiParam {String} access_token admin access token.
+ * @apiSuccess {Object} chats Chats's data.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 404 Chats not found.
+ * @apiError 401 admin access only.
+ */
+router.get('/getchatsbycourseid/:id',
+  token({ required: true }),
+  getChatsByCourseId)
+
+
+
+
+/**
  * @api {get} /chats/:id Retrieve chats
  * @apiName RetrieveChats
  * @apiGroup Chats
@@ -56,6 +73,12 @@ router.get('/',
 router.get('/:id',
   token({ required: true }),
   show)
+
+
+
+
+
+
 
 /**
  * @api {put} /chats/:id Update chats
