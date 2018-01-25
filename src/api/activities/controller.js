@@ -121,6 +121,10 @@ export const getActivitiesByDate = ({ params }, res, next) =>
               activity.tags = tags
             })
 
+            await User.findById( activity.createdBy_id ).then( (user) => {
+              activity.createdBy_id = user.view()
+            })
+
       }
 
       return { fileteredActivities: filteredActivities }     
