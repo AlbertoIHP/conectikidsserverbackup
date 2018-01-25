@@ -124,7 +124,7 @@ export const getActivitiesByDate = ({ params }, res, next) =>
               {
 
                 await User.find().where('_id').equals(tag.tagged_id).then( (user) => {
-                  tag.tagged_id = user
+                  tag.tagged_id = user.view()
                 })
               }
 
