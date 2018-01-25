@@ -57,11 +57,7 @@ export const getChatsByUserAndCourseId = ({ params }, res, next) =>
 
       for ( let chat of respuesta.userChats )
       {
-        await Chats.findById( chat.chat_id )
-              .then(notFound(res))
-              .then((chats) => chats ? objectChats.push(chats.view()) : null)
-              .then(success(res, 204))
-              .catch(next)
+        await Chats.findById( chat.chat_id ).then((chats) => chats ? objectChats.push(chats.view()) : null)
       }
 
       
