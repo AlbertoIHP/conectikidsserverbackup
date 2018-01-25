@@ -122,7 +122,7 @@ export const getActivitiesByDate = ({ params }, res, next) =>
               {
                 await User.findById( tag.tagged_id )
                 .then(notFound(res))
-                .then((user) => user ? tag.tagged_id = user : null)
+                .then((user) => user ? tag.tagged_id = user.view() : null)
               }
 
             })
