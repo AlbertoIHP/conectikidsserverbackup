@@ -122,7 +122,7 @@ export const getActivitiesByDate = ({ params }, res, next) =>
               {
                 await User.findById( tag.tagged_id ).then( ( user ) => {
                   console.log("LOOOOOOOOOGGGGGGGGGGG")
-                  console.log( user )
+                  console.log( typeof user )
                   tag.tagged_id = user
                 }) 
               }
