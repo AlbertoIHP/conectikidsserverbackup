@@ -82,10 +82,6 @@ export const getActivitiesByCourseId = ({ params }, res, next) =>
             })
 
 
-            Tags.find().where('activity_id').equals( respuesta.courseActivities[i].id ).then( (tags) => {
-              respuesta.courseActivities[i].tags = tags ? tags.view() : []
-            })
-
           })     
        }
 
@@ -114,6 +110,18 @@ export const getActivitiesByDate = ({ params }, res, next) =>
 
 
       filteredActivities = filteredActivities.filter( activity => JSON.stringify(activity.createdAt).split('T')[0].split('"')[1] ===  date  )
+
+
+      for( let i in filteredActivities )
+      {
+
+            Tags.find().where('activity_id').equals( filteredActivities[i].id ).then( (tags) => {
+              console.log("LOGGGGGGGGGGGGGGGGGGGGGGGG")
+              console.log(respuesta.courseActivities[i].id)
+              filteredActivities[i].tags = tags ? tags.view() : []
+            })
+
+      }
 
 
       console.log( filteredActivities)
