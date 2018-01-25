@@ -45,11 +45,11 @@ export const destroy = ({ params }, res, next) =>
 **/
 
 
-export const getChatsByCourseId = ({ params }, res, next) => 
+export const getChatsByUserAndCourseId = ({ params }, res, next) => 
   Chatsusers.find().where('user_id')
     .equals(params.id.split('&')[1])
     .then(notFound(res))
-    .then( async function( chats )
+    .then( ( chats ) =>
     {
       let respuesta = { userChats: chats.map((chats) => chats.view()) }
 
