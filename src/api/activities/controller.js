@@ -124,7 +124,7 @@ export const getActivitiesByDate = ({ params }, res, next) =>
                 await User.findById( tag.tagged_id).then( user => {
 
 
-                  let finalObject = { name: user.name }                  
+                  let finalObject = JSON.stringify({ name: user.name })                  
 
                   tag.tagged_id = finalObject
                 })
