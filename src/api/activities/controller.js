@@ -116,18 +116,18 @@ export const getActivitiesByDate = ({ params }, res, next) =>
       {
 
 
-          Tags.find().where('activity_id').equals( activity.id ).then( async function(tags){
+            await Tags.find().where('activity_id').equals( activity.id ).then( async function(tags){
               activity.tags = tags
 
               for( let tag of activity.tags )
               {
                 await User.findById( tag.tagged_id).then( user => {
-                console.log("INICIO")
-                console.log( typeof user )
-                console.log( user.name )
-                console.log( "FIN")
+            console.log("INICIO")
+            console.log( typeof user )
+            console.log( user.name )
+            console.log( "FIN")
 
-                  tag.tagged_id = user.view()
+                  tag.tagged_id = { name: user.name }
                 })
               }
 
