@@ -53,8 +53,6 @@ export const getChatsByUserAndCourseId = ({ params }, res, next) =>
     .then( async function( chats )
     {
       let respuesta = { userChats: chats.map((chats) => chats.view()) }
-      console.log("Respuesta de la BD ",respuesta)
-
       let objectChats = []
 
       for ( let chat of respuesta.userChats )
@@ -65,8 +63,6 @@ export const getChatsByUserAndCourseId = ({ params }, res, next) =>
               .then(success(res, 204))
               .catch(next)
       }
-
-      console.log( objectChats )
 
       
       respuesta = objectChats.filter( chat => chat.course_id === params.id.split('&')[0] )
