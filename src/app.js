@@ -36,28 +36,16 @@ websocket.on( 'connection', (socket) => {
        socket.emit( 'commentAdded', comment )     
    })
 
-   socket.on( 'chatCreated', ( chat ) =>  {
-       socket.broadcast.emit( 'chatCreated', chat )  
-       socket.emit( 'chatCreated', chat )     
-   })
-
-
-
-
-
-
-
-
-
-
-
 
    socket.on( 'chatAdded', ( chat ) =>  {
        socket.broadcast.emit( 'chatAdded', chat )  
        socket.emit( 'chatAdded', chat )     
    })
 
-
+   socket.on( 'message', ( messages ) =>  {
+       socket.broadcast.emit( 'message', messages )  
+       socket.emit( 'message', messages )     
+   })
 
 
 })
