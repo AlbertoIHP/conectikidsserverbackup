@@ -125,10 +125,7 @@ export const getActivitiesByDate = ({ params }, res, next) =>
 
 
                   let finalObject = { name: user.name }                  
-                  console.log("INICIO")
-                  console.log( typeof user )
-                  console.log( finalObject )
-                  console.log( "FIN")
+
                   tag.tagged_id = finalObject
                 })
               }
@@ -141,7 +138,9 @@ export const getActivitiesByDate = ({ params }, res, next) =>
 
       }
 
-      console.log(filteredActivities)
+                  console.log("INICIO")
+                  console.log( filteredActivities )
+                  console.log( "FIN")
 
       return { fileteredActivities: filteredActivities }     
     })
