@@ -122,9 +122,10 @@ export const getActivitiesByDate = ({ params }, res, next) =>
               for( let tag of activity.tags )
               {
                 await User.findById( tag.tagged_id).then( user => {
-            console.log("LOOOOOOOOOGGGGGGGGGGG")
+            console.log("INICIO")
             console.log( typeof user )
-            console.log( user )
+            console.log( user.name )
+            console.log( "FIN")
 
                   tag.tagged_id = user.view()
                 })
