@@ -117,9 +117,9 @@ export const getActivitiesByDate = ({ params }, res, next) =>
 
 
             await Tags.find().where('activity_id').equals( activity.id ).then( async function(tags){
-              activity.tags = tags
+              
 
-              for( let tag of activity.tags )
+              for( let tag of tags )
               {
                 await User.findById( tag.tagged_id).then( user => {
 
@@ -129,6 +129,9 @@ export const getActivitiesByDate = ({ params }, res, next) =>
                   tag.tagged_id = finalObject
                 })
               }
+              
+              activity.tags = tags
+
 
             })
 
