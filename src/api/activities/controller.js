@@ -3,6 +3,7 @@ import { Activities } from '.'
 import { User } from '../user'
 import { Courses } from '../courses'
 import { Gardens } from '../gardens'
+import { Tags } from '../tags'
 
 export const create = ({ bodymen: { body } }, res, next) =>
   Activities.create(body)
@@ -80,6 +81,10 @@ export const getActivitiesByCourseId = ({ params }, res, next) =>
               respuesta.courseActivities[i].course_id.teacher_id = user.view()
             })
 
+
+            Tags.find().where('activity_id').equals( respuesta.courseActivities[i].id ).then( (tags) => {
+              respuesta.courseActivities[i].tags = tags.view()
+            })
 
           })     
        }
