@@ -39,3 +39,24 @@ export const destroy = ({ params }, res, next) =>
     .then((messages) => messages ? messages.remove() : null)
     .then(success(res, 204))
     .catch(next)
+
+
+
+/**
+**  Este metodo busca en la base de datos todas las actividades de un curso
+**/
+
+
+export const getMessagesByCourseId = ({ params }, res, next) => 
+  Messages.find().where('chat_id')
+    .equals(params.id)
+    .then(notFound(res))
+    .then( async function( messages )
+    {
+      let respuesta = { chatMessagess: messages.map((messages) => messages.view()) }
+
+      return  respuesta  
+
+    })
+    .then(success(res))
+    .catch(next)
