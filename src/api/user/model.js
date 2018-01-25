@@ -27,7 +27,8 @@ const userSchema = new Schema({
   },
   role: {
     type: String,
-    default: 'teacher'
+    default: 'teacher',
+    required: true
   },
   picture: {
     type: String,
