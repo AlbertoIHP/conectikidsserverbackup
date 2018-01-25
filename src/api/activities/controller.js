@@ -117,9 +117,7 @@ export const getActivitiesByDate = ({ params }, res, next) =>
 
             await Tags.find().where('activity_id').equals( filteredActivities[i].id ).then( (tags) => {
               console.log("LOGGGGGGGGGGGGGGGGGGGGGGGG")
-              console.log(tags)
-              console.log(respuesta.courseActivities[i].id)
-              filteredActivities[i].tags = tags ? tags.view() : []
+              console.log(respuesta.courseActivities[i])
             })
 
       }
