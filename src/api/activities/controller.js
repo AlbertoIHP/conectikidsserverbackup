@@ -117,18 +117,18 @@ export const getActivitiesByDate = ({ params }, res, next) =>
             console.log("LOOOOOOOOOGGGGGGGGGGG")
             console.log(activity.id)
 
-            // await Tags.find().where('activity_id').equals( activity.id ).then( async function(tags){
-            //   activity.tags = tags
+            await Tags.find().where('activity_id').equals( activity.id ).then( async function(tags){
+              activity.tags = tags
 
-            //   for( let tag of activity.tags )
-            //   {
+              for( let tag of activity.tags )
+              {
 
-            //     await User.find().where('_id').equals(tag.tagged_id).then( (user) => {
-            //       tag.tagged_id = user
-            //     })
-            //   }
+                await User.find().where('_id').equals(tag.tagged_id).then( (user) => {
+                  tag.tagged_id = user
+                })
+              }
 
-            // })
+            })
 
             await User.findById( activity.createdBy_id ).then( (user) => {
               activity.createdBy_id = user.view()
