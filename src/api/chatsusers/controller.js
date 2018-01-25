@@ -1,6 +1,6 @@
 import { success, notFound } from '../../services/response/'
 import { Chatsusers } from '.'
-import { Courses } from '../courses'
+import { Chat } from '../chats'
 
 export const create = ({ bodymen: { body } }, res, next) =>
   Chatsusers.create(body)
@@ -52,14 +52,24 @@ export const getChatsByUserAndCourseId = ({ params }, res, next) =>
     .then(notFound(res))
     .then( async function( chats )
     {
-      console.log("parametros del request: ",params)
-      console.log(" Esto entrego la BD: ", chats)
       let respuesta = { userChats: chats.map((chats) => chats.view()) }
-
-
-
       console.log("Respuesta de la BD ",respuesta)
-      respuesta = respuesta.userChats.filter( chat => chat.course_id === params.id.split('&')[0] )
+
+      let objectChats = []
+
+      for ( let chat of respuesta.userChats )
+      {
+        await Chats.findById( chat.chat_id )
+              .then(notFound(res))
+              .then((chats) => chats ? objectChats.push(chats.view()) : null)
+              .then(success(res, 204))
+              .catch(next)
+      }
+
+      console.log( objectChats )
+
+      
+      respuesta = objectChats.filter( chat => chat.course_id === params.id.split('&')[0] )
 
       console.log(" Filtrado por la id del curso ", respuesta)
 
