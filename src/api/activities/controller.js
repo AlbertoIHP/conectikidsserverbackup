@@ -122,7 +122,14 @@ export const getActivitiesByDate = ({ params }, res, next) =>
               {
                 await User.findById( tag.tagged_id )
                 .then(notFound(res))
-                .then((user) => user ? tag.tagged_id = {JSON.parse(user) } : null)
+                .then((user) =>  {
+                  let twice = user ? JSON.parse(user) : tag.tagged_id
+
+                  console.log( typeof twice )
+                  tag.tagged_id = twice          
+
+
+                })
               }
 
             })
