@@ -12,9 +12,12 @@ const messagesSchema = new Schema({
   chat_id: {
     type: String,
     required: true
+  },
+  createdAt: {
+    type: String,
+    required: true
   }
 }, {
-  timestamps: true,
   toJSON: {
     virtuals: true,
     transform: (obj, ret) => { delete ret._id }
@@ -30,7 +33,6 @@ messagesSchema.methods = {
       user: this.user,
       chat_id: this.chat_id,
       createdAt: this.createdAt,
-      updatedAt: this.updatedAt
     }
 
     return full ? {
