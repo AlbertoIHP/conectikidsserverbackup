@@ -96,7 +96,7 @@ export const getActivitiesByCourseId = ({ params }, res, next) =>
 export const getActivitiesByDate = ({ params }, res, next) => 
   Activities.find()
     .then(notFound(res))
-    .then(( activities ) => {
+    .then( async function( activities ) {
 
       let respuesta = { dateActivities: activities.map((activities) => activities.view()) }
       
@@ -115,8 +115,9 @@ export const getActivitiesByDate = ({ params }, res, next) =>
       for( let i in filteredActivities )
       {
 
-            Tags.find().where('activity_id').equals( filteredActivities[i].id ).then( (tags) => {
+            await Tags.find().where('activity_id').equals( filteredActivities[i].id ).then( (tags) => {
               console.log("LOGGGGGGGGGGGGGGGGGGGGGGGG")
+              console.log(tags)
               console.log(respuesta.courseActivities[i].id)
               filteredActivities[i].tags = tags ? tags.view() : []
             })
