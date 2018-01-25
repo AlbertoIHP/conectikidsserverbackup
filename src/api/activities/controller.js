@@ -117,21 +117,21 @@ export const getActivitiesByDate = ({ params }, res, next) =>
 
 
             await Tags.find().where('activity_id').equals( activity.id ).then( async function(tags){
-              
+              activity.tags = tags
 
-              for( let tag of tags )
+              for( let tag of activity.tags )
               {
                 await User.findById( tag.tagged_id).then( user => {
+                console.log("INICIO")
+                console.log( typeof user )
+                console.log( user.name )
+                console.log( "FIN")
 
-
-                  let finalObject = JSON.stringify({ name: user.name })                  
+                let finalObject = user.name
 
                   tag.tagged_id = finalObject
                 })
               }
-              
-              activity.tags = tags
-
 
             })
 
@@ -140,10 +140,6 @@ export const getActivitiesByDate = ({ params }, res, next) =>
             })
 
       }
-
-                  console.log("INICIO")
-                  console.log( filteredActivities )
-                  console.log( "FIN")
 
       return { fileteredActivities: filteredActivities }     
     })
