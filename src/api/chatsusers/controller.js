@@ -1,5 +1,6 @@
 import { success, notFound } from '../../services/response/'
 import { Chatsusers } from '.'
+import { Courses } from '../courses'
 
 export const create = ({ bodymen: { body } }, res, next) =>
   Chatsusers.create(body)
@@ -49,10 +50,13 @@ export const getChatsByUserAndCourseId = ({ params }, res, next) =>
   Chatsusers.find().where('user_id')
     .equals(params.id.split('&')[1])
     .then(notFound(res))
-    .then( ( chats ) =>
+    .then( async function( chats )
     {
       console.log("parametros del request: ",params)
+      console.log(" Esto entrego la BD: ", chats)
       let respuesta = { userChats: chats.map((chats) => chats.view()) }
+
+
 
       console.log("Respuesta de la BD ",respuesta)
       respuesta = respuesta.userChats.filter( chat => chat.course_id === params.id.split('&')[0] )
