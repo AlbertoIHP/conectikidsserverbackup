@@ -1,6 +1,10 @@
 import mongoose, { Schema } from 'mongoose'
 
 const messagesSchema = new Schema({
+  _id: {
+    type: String,
+    required: true
+  },
   text: {
     type: String,
     required: true
@@ -28,6 +32,7 @@ messagesSchema.methods = {
   view (full) {
     const view = {
       // simple view
+      _id: this._id,
       id: this.id,
       text: this.text,
       user: this.user,

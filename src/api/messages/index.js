@@ -7,7 +7,7 @@ import { schema } from './model'
 export Messages, { schema } from './model'
 
 const router = new Router()
-const { text, user, chat_id, createdAt } = schema.tree
+const { _id, text, user, chat_id, createdAt } = schema.tree
 
 /**
  * @api {post} /messages Create messages
@@ -25,7 +25,7 @@ const { text, user, chat_id, createdAt } = schema.tree
  */
 router.post('/',
   master(),
-  body({ text, user, chat_id, createdAt }),
+  body({ _id, text, user, chat_id, createdAt }),
   create)
 
 /**
@@ -89,7 +89,7 @@ router.get('/getmessagesbycourseid/:id',
  */
 router.put('/:id',
   token({ required: true }),
-  body({ text, user, chat_id, createdAt }),
+  body({ _id, text, user, chat_id, createdAt }),
   update)
 
 /**
