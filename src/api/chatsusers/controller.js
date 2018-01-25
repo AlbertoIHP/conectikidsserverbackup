@@ -1,6 +1,6 @@
 import { success, notFound } from '../../services/response/'
 import { Chatsusers } from '.'
-import { Chat } from '../chats'
+import { Chats } from '../chats'
 
 export const create = ({ bodymen: { body } }, res, next) =>
   Chatsusers.create(body)
