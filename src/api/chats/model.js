@@ -2,10 +2,20 @@ import mongoose, { Schema } from 'mongoose'
 
 const chatsSchema = new Schema({
   course_id: {
-    type: String
+    type: String,
+    required: true
   },
   name: {
-    type: String
+    type: String,
+    required: true
+  },
+  description: {
+    type: String,
+    required: true
+  },
+  picture: {
+    type: String,
+    required: true
   }
 }, {
   timestamps: true,
@@ -22,6 +32,8 @@ chatsSchema.methods = {
       id: this.id,
       course_id: this.course_id,
       name: this.name,
+      description: this.description,
+      picture: this.picture,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     }

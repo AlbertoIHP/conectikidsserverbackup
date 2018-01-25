@@ -7,7 +7,7 @@ import { schema } from './model'
 export Chats, { schema } from './model'
 
 const router = new Router()
-const { course_id, name } = schema.tree
+const { course_id, name, description, picture } = schema.tree
 
 /**
  * @api {post} /chats Create chats
@@ -24,14 +24,13 @@ const { course_id, name } = schema.tree
  */
 router.post('/',
   master(),
-  body({ course_id, name }),
+  body({ course_id, name, description, picture }),
   create)
 
 /**
  * @api {get} /chats Retrieve chats
  * @apiName RetrieveChats
  * @apiGroup Chats
- * @apiPermission admin
  * @apiParam {String} access_token admin access token.
  * @apiUse listParams
  * @apiSuccess {Number} count Total amount of chats.
@@ -40,7 +39,7 @@ router.post('/',
  * @apiError 401 admin access only.
  */
 router.get('/',
-  token({ required: true, roles: ['admin'] }),
+  token({ required: true }),
   query(),
   index)
 
@@ -48,7 +47,6 @@ router.get('/',
  * @api {get} /chats/:id Retrieve chats
  * @apiName RetrieveChats
  * @apiGroup Chats
- * @apiPermission admin
  * @apiParam {String} access_token admin access token.
  * @apiSuccess {Object} chats Chats's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
@@ -56,14 +54,13 @@ router.get('/',
  * @apiError 401 admin access only.
  */
 router.get('/:id',
-  token({ required: true, roles: ['admin'] }),
+  token({ required: true }),
   show)
 
 /**
  * @api {put} /chats/:id Update chats
  * @apiName UpdateChats
  * @apiGroup Chats
- * @apiPermission admin
  * @apiParam {String} access_token admin access token.
  * @apiParam course_id Chats's course_id.
  * @apiParam name Chats's name.
@@ -73,22 +70,21 @@ router.get('/:id',
  * @apiError 401 admin access only.
  */
 router.put('/:id',
-  token({ required: true, roles: ['admin'] }),
-  body({ course_id, name }),
+  token({ required: true }),
+  body({ course_id, name, description, picture }),
   update)
 
 /**
  * @api {delete} /chats/:id Delete chats
  * @apiName DeleteChats
  * @apiGroup Chats
- * @apiPermission admin
  * @apiParam {String} access_token admin access token.
  * @apiSuccess (Success 204) 204 No Content.
  * @apiError 404 Chats not found.
  * @apiError 401 admin access only.
  */
 router.delete('/:id',
-  token({ required: true, roles: ['admin'] }),
+  token({ required: true }),
   destroy)
 
 export default router
