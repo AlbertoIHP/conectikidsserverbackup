@@ -48,7 +48,7 @@ export const destroy = ({ params }, res, next) =>
 
 export const getChatsByUserAndCourseId = ({ params }, res, next) => 
   Chatsusers.find().where('user_id')
-    .equals(params.id.split('&')[1])
+    .equals(params.id.toString().split('&')[1])
     .then(notFound(res))
     .then( async function( chats )
     {
