@@ -1,14 +1,17 @@
 import mongoose, { Schema } from 'mongoose'
 
 const messagesSchema = new Schema({
-  content: {
-    type: String
+  text: {
+    type: String,
+    required: true
   },
-  sender_id: {
-    type: String
+  user: {
+    type: Object,
+    required: true
   },
   chat_id: {
-    type: String
+    type: String,
+    required: true
   }
 }, {
   timestamps: true,
@@ -23,8 +26,8 @@ messagesSchema.methods = {
     const view = {
       // simple view
       id: this.id,
-      content: this.content,
-      sender_id: this.sender_id,
+      text: this.text,
+      user: this.user,
       chat_id: this.chat_id,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt

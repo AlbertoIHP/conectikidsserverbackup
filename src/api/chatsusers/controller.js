@@ -39,3 +39,24 @@ export const destroy = ({ params }, res, next) =>
     .then((chatsusers) => chatsusers ? chatsusers.remove() : null)
     .then(success(res, 204))
     .catch(next)
+
+/**
+**  Este metodo busca en la base de datos todas las actividades de un curso
+**/
+
+
+export const getChatsByCourseId = ({ params }, res, next) => 
+  Chatsusers.find().where('user_id')
+    .equals(params.id.split('&')[1])
+    .then(notFound(res))
+    .then( async function( chats )
+    {
+      let respuesta = { userChats: chats.map((chats) => chats.view()) }
+
+      respuesta = respuesta.userChats.filter( chat => chat.course_id === params.id.split('&')[0] )
+
+      return  { userChats: respuesta }  
+
+    })
+    .then(success(res))
+    .catch(next)
