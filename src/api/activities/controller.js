@@ -112,13 +112,16 @@ export const getActivitiesByDate = ({ params }, res, next) =>
       filteredActivities = filteredActivities.filter( activity => JSON.stringify(activity.createdAt).split('T')[0].split('"')[1] ===  date  )
 
 
-      for( let i in filteredActivities )
+      for( let activity of filteredActivities )
       {
+            console.log("LOOOOOOOOOGGGGGGGGGGG")
+            console.log(activity)
 
-            await Tags.find().where('activity_id').equals( filteredActivities[i].id ).then( (tags) => {
-              console.log("LOGGGGGGGGGGGGGGGGGGGGGGGG")
-              console.log(respuesta.courseActivities[i])
-            })
+
+            // await Tags.find().where('activity_id').equals( filteredActivities[i].id ).then( (tags) => {
+            //   console.log("LOGGGGGGGGGGGGGGGGGGGGGGGG")
+            //   console.log(respuesta.courseActivities[i])
+            // })
 
       }
 
