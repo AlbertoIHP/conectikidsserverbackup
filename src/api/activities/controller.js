@@ -83,7 +83,7 @@ export const getActivitiesByCourseId = ({ params }, res, next) =>
 
 
             Tags.find().where('activity_id').equals( respuesta.courseActivities[i].id ).then( (tags) => {
-              respuesta.courseActivities[i].tags = tags.view()
+              respuesta.courseActivities[i].tags = tags ? tags.view() : []
             })
 
           })     
