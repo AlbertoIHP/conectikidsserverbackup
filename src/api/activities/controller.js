@@ -117,12 +117,12 @@ export const getActivitiesByDate = ({ params }, res, next) =>
             console.log("LOOOOOOOOOGGGGGGGGGGG")
             console.log(activity.id)
 
-            await Tags.find().where('activity_id').equals( activity.id ).then( (tags) => {
+            await Tags.find().where('activity_id').equals( activity.id ).then( async function(tags){
               activity.tags = tags
 
               for( let tag of activity.tags )
               {
-                User.findById( tag.tagged_id ).then( ( user ) => {
+                await User.findById( tag.tagged_id ).then( ( user ) => {
                   tag.tagged_id = user.view()  
                 }) 
               }
