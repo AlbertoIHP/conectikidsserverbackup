@@ -2,10 +2,12 @@ import mongoose, { Schema } from 'mongoose'
 
 const chatsusersSchema = new Schema({
   chat_id: {
-    type: String
+    type: String,
+    required: true
   },
   user_id: {
-    type: String
+    type: String,
+    required: true
   }
 }, {
   timestamps: true,
