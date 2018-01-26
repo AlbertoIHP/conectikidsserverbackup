@@ -219,7 +219,7 @@
 
 
 
-	GET /chats/:id
+	GET /chats/getchatsbycourseid/:id
 
 
 ### Parameters
@@ -277,7 +277,7 @@
 
 
 
-	GET /chatsusers/:id
+	GET /chatsusers/getchatsbycourseanduserid/:id
 
 
 ### Parameters
@@ -398,7 +398,7 @@
 
 
 
-	GET /comments
+	GET /comments/:id
 
 
 ### Parameters
@@ -406,11 +406,6 @@
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
 | access_token			| String			|  <p>admin access token.</p>							|
-| q			| String			| **optional** <p>Query to search.</p>							|
-| page			| Number			| **optional** <p>Page number.</p>							|
-| limit			| Number			| **optional** <p>Amount of returned items.</p>							|
-| sort			| String[]			| **optional** <p>Order of returned items.</p>							|
-| fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
 
 ## Retrieve comments of a activity
 
@@ -553,7 +548,7 @@
 
 
 
-	GET /gardens
+	GET /gardens/:id
 
 
 ### Parameters
@@ -561,11 +556,6 @@
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
 | access_token			| String			|  <p>admin access token.</p>							|
-| q			| String			| **optional** <p>Query to search.</p>							|
-| page			| Number			| **optional** <p>Page number.</p>							|
-| limit			| Number			| **optional** <p>Amount of returned items.</p>							|
-| sort			| String[]			| **optional** <p>Order of returned items.</p>							|
-| fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
 
 ## Update gardens
 
@@ -616,7 +606,7 @@
 
 
 
-	GET /likes/:id
+	GET /likes
 
 
 ### Parameters
@@ -624,6 +614,11 @@
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
 | access_token			| String			|  <p>admin access token.</p>							|
+| q			| String			| **optional** <p>Query to search.</p>							|
+| page			| Number			| **optional** <p>Page number.</p>							|
+| limit			| Number			| **optional** <p>Amount of returned items.</p>							|
+| sort			| String[]			| **optional** <p>Order of returned items.</p>							|
+| fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
 
 ## Update likes
 
@@ -675,7 +670,7 @@
 
 
 
-	GET /messages
+	GET /messages/:id
 
 
 ### Parameters
@@ -683,11 +678,6 @@
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
 | access_token			| String			|  <p>admin access token.</p>							|
-| q			| String			| **optional** <p>Query to search.</p>							|
-| page			| Number			| **optional** <p>Page number.</p>							|
-| limit			| Number			| **optional** <p>Amount of returned items.</p>							|
-| sort			| String[]			| **optional** <p>Order of returned items.</p>							|
-| fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
 
 ## Update messages
 
@@ -841,7 +831,7 @@
 
 
 
-	GET /tasks
+	GET /tasks/:id
 
 
 ### Parameters
@@ -849,11 +839,6 @@
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
 | access_token			| String			|  <p>admin access token.</p>							|
-| q			| String			| **optional** <p>Query to search.</p>							|
-| page			| Number			| **optional** <p>Page number.</p>							|
-| limit			| Number			| **optional** <p>Amount of returned items.</p>							|
-| sort			| String[]			| **optional** <p>Order of returned items.</p>							|
-| fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
 
 ## Update tasks
 
