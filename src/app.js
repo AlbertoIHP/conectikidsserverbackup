@@ -35,8 +35,7 @@ const upload = multer({
       cb(null, {fieldName: file.fieldname});
     },
     key(req, file, cb) {
-      console.log(req)
-      console.log(file)
+      console.log(file.originalname.split('.')[file.originalname.split('.').length - 1 ])
       cb(null, Date.now().toString() + '.png');
     }
   })
