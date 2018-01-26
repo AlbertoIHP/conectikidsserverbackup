@@ -46,13 +46,12 @@ export const getChildrensByParentId = ({ params }, res, next) =>
   Childrens.find().where('parent_id')
     .equals(params.id)
     .then(notFound(res))
-    .then( async function( childrens )
+    .then( ( childrens ) => 
     {
+      console.log("ID DEL PADRE ",params.id)
       let respuesta = { childrensCourse: childrens.map((childrens) => childrens.view()) }
-
-
+      console.log("RESPUESTA DELA BD: ",respuesta)
       return respuesta
-
     })
     .then(success(res))
     .catch(next)
