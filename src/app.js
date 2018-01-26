@@ -35,14 +35,14 @@ const upload = multer({
       cb(null, {fieldName: file.fieldname});
     },
     key(req, file, cb) {
+      console.log(req)
+      console.log(file)
       cb(null, Date.now().toString() + '.png');
     }
   })
 })
 
 app.post('/upload', upload.single('photo'), (req, res, next) => {
-  console.log(req)
-  console.log(res)
   res.json(req.file)
 })
 
