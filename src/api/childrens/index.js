@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
 import { master, token } from '../../services/passport'
-import { create, index, show, update, destroy, getChildrensParentByCourseId } from './controller'
+import { create, index, show, update, destroy, getChildrensParentByCourseId, getChildrensByParentId } from './controller'
 import { schema } from './model'
 export Childrens, { schema } from './model'
 
@@ -33,7 +33,6 @@ router.post('/',
  * @api {get} /childrens Retrieve childrens
  * @apiName RetrieveChildrens
  * @apiGroup Childrens
- * @apiPermission admin
  * @apiParam {String} access_token admin access token.
  * @apiUse listParams
  * @apiSuccess {Number} count Total amount of childrens.
@@ -50,7 +49,6 @@ router.get('/',
  * @api {get} /childrens/:id Retrieve childrens
  * @apiName RetrieveChildrens
  * @apiGroup Childrens
- * @apiPermission admin
  * @apiParam {String} access_token admin access token.
  * @apiSuccess {Object} childrens Childrens's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
@@ -70,7 +68,6 @@ router.get('/:id',
  * @api {get} /childrens/getchildrensparentbycourseid/:id Retrieve childrens
  * @apiName RetrieveChildrens
  * @apiGroup Childrens
- * @apiPermission admin
  * @apiParam {String} access_token admin access token.
  * @apiSuccess {Object} childrens Childrens's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
@@ -86,7 +83,19 @@ router.get('/getchildrensparentbycourseid/:id',
 
 
 
-
+/**
+ * @api {get} /childrens/getchildrensbyparentid/:id Retrieve childrens
+ * @apiName RetrieveChildrens
+ * @apiGroup Childrens
+ * @apiParam {String} access_token admin access token.
+ * @apiSuccess {Object} childrens Childrens's data.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 404 Childrens not found. 
+ * @apiError 401 admin access only.
+ */
+router.get('/getchildrensbyparentid/:id',
+  token({ required: true }),
+  getChildrensByParentId)
 
 
 
@@ -94,7 +103,6 @@ router.get('/getchildrensparentbycourseid/:id',
  * @api {put} /childrens/:id Update childrens
  * @apiName UpdateChildrens
  * @apiGroup Childrens
- * @apiPermission admin
  * @apiParam {String} access_token admin access token.
  * @apiParam rut Childrens's rut.
  * @apiParam name Childrens's name.
@@ -115,7 +123,6 @@ router.put('/:id',
  * @api {delete} /childrens/:id Delete childrens
  * @apiName DeleteChildrens
  * @apiGroup Childrens
- * @apiPermission admin
  * @apiParam {String} access_token admin access token.
  * @apiSuccess (Success 204) 204 No Content.
  * @apiError 404 Childrens not found.

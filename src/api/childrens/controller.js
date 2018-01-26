@@ -42,6 +42,25 @@ export const destroy = ({ params }, res, next) =>
     .catch(next)
 
 
+export const getChildrensByParentId = ({ params }, res, next) => 
+  Childrens.find().where('parent_id')
+    .equals(params.id)
+    .then(notFound(res))
+    .then( async function( childrens )
+    {
+      let respuesta = { childrensCourse: childrens.map((childrens) => childrens.view()) }
+
+
+      return respuesta
+
+    })
+    .then(success(res))
+    .catch(next)
+
+
+
+
+
 export const getChildrensParentByCourseId = ({ params }, res, next) => 
   Childrens.find().where('course_id')
     .equals(params.id)
